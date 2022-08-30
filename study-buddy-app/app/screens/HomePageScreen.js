@@ -7,9 +7,7 @@ const HomePageScreen = (props) => {
             <Text>Welcome to study buddy app.</Text>
         </View>
     );
-}
-
-export default HomePageScreen;
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -17,4 +15,6 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     }
-})
+});
+
+export default HomePageScreen;
