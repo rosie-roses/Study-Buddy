@@ -24,9 +24,41 @@ if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
 
+/* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
+var reportID = "";
+
+function addToFirebase() {
+  db.collection("assignments")
+    .add({
+      name: "assignment2",
+      colorCode: "#000000",
+      weight: 10,
+      grade: "B",
+    })
+    .then((docRef) => {
+      console.log("Document written with ID: ", docRef.id);
+      reportID = docRef.id;
+    })
+    .catch((error) => {
+      console.error("Error adding document: ", error);
+    });
+}
+
+/* Test to see if we can get from firebase. Received help from >> https://firebase.google.com/docs/firestore. */
+function getAllFromFirebase() {
+  db.collection("assignments")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+      });
+    });
+}
+
 const db = firebase.firestore();
 
-const Stack = createNativeStackNavigator(); // Navigation
+const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
   return (
@@ -52,4 +84,4 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-export { db };
+export { db, addToFirebase, getAllFromFirebase };
