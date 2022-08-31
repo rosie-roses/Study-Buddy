@@ -2,8 +2,13 @@ import { StyleSheet } from "react-native";
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import DummyPageScreen from "./app/screens/DummyPageScreen";
 import HomePageScreen from "./app/screens/HomePageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
+import StudyTimePageScreen from "./app/screens/StudyTimePageScreen";
+import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
+import OverviewPageScreen from "./app/screens/OverviewPageScreen";
+import AccountPageScreen from "./app/screens/AccountPageScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -64,15 +69,40 @@ const Stack = createNativeStackNavigator(); // Navigation.
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Main">
+        <Stack.Screen
+          name="Main"
+          component={MainPageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Dummy"
+          component={DummyPageScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="Home"
           component={HomePageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Main"
-          component={MainPageScreen}
+          name="StudyTime"
+          component={StudyTimePageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AddCourses"
+          component={AddCoursesPageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Overview"
+          component={OverviewPageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Account"
+          component={AccountPageScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
