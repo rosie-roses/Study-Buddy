@@ -3,6 +3,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomePageScreen from "./app/screens/HomePageScreen";
+import MainPageScreen from "./app/screens/MainPageScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -67,6 +68,11 @@ function App() {
         <Stack.Screen
           name="Home"
           component={HomePageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Main"
+          component={MainPageScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
