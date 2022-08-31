@@ -9,7 +9,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 const MenuBar = ({ state, descriptors, navigation }) => {
 
     return (
-        <View style={{ flexDirection: 'row' }}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', backgroundColor: 'red' }}>
           {state.routes.map((route, index) => {
             const { options } = descriptors[route.key];
             const label =
@@ -48,9 +48,9 @@ const MenuBar = ({ state, descriptors, navigation }) => {
                 onPress={onPress}
                 onLongPress={onLongPress}
                 key={index}
-                style={{ flex: 1 }}
+                style={{ flex: 1, borderColor: "blue", borderWidth: 1}}
               >
-                <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
+                <Text style={{ color: isFocused ? '#673ab7' : '#222', textAlign: "center" }}>
                   {label}
                 </Text>
               </TouchableOpacity>
