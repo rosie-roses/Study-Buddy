@@ -9,7 +9,7 @@ import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
 import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
 import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
-import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/chooseColourCodeScreen";
+import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.

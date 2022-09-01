@@ -1,24 +1,60 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, TextInput, ScrollView } from "react-native";
 
 const AddCoursesPageScreen = (props) => {
 
   const navigation = useNavigation();
-
+  // const [text, onChangeText] = React.useState("Useless Text");
+  // const [number, onChangeNumber] = React.useState(null);
   return (
     <View style={styles.container}>
-      <Text>We are in the add courses page.</Text>
+      <ScrollView>
+      <Text style={styles.title}>1/4</Text>
+      <Text style={styles.title2}>Give Your Assessment a name....</Text>
+      {/* <Text style={styles.title}></Text> */}
       {/* Testing next sub-screen functionality. */}
+
+      <TextInput
+        style={styles.input}
+        placeholder="useless placeholder"
+        keyboardType="default"
+      />
       <Pressable
-        style={styles.entryButton}
+      style={styles.entryButton}
         onPress={() => {
           navigation.navigate("ChooseColourCode");
         }}
       >
-        <Text style={styles.entryButtonText}>next</Text>
-      </Pressable>
+        <Text style={styles.entryButtonText }>next</Text>
+        </Pressable>
+
+        <Pressable
+        style={styles.buttonContainer1}
+        onPress={() => {
+          navigation.navigate("ChooseColourCode");
+        }}
+      
+      >
+        
+      <Pressable
+        style={styles.buttonContainer1}
+        onPress={() => {
+          navigation.navigate("ChooseColourCode");
+        }}
+      >
+        
+        <Text style={styles.buttonText1}>Add New Course</Text>
+        <Text style={styles.buttonText1}>Add Existing Course</Text> 
+
+        </Pressable>
+        </Pressable>
+       
+      </ScrollView>
+    
     </View>
+
+    
   );
 };
 
@@ -28,16 +64,40 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
+    flexDirection: 'column',
+  
   },
+  buttonContainer1: {
+    padding: 10,
+    borderRadius: 5,
+    elevation: 3,
+    backgroundColor: "#8639d4",
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  buttonText1: {
+    fontSize: 12,
+    lineHeight: 21,
+    fontWeight: "bold",
+    color: 'white',
+    textTransform: "uppercase",
+    textAlign: 'center',
+   
+    
+  },
+  
   entryButton: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 5,
-    elevation: 3,
+   // paddingHorizontal: 32,
+    //borderRadius: 5,
+    //elevation: 3,
     backgroundColor: "#8639d4",
-    marginTop: 40
+    marginTop: 50,
+   // margin: 0,
+    marginBottom: 30,
 },
 entryButtonText: {
     fontSize: 16,
@@ -45,7 +105,32 @@ entryButtonText: {
     fontWeight: "bold",
     letterSpacing: 1,
     color: 'white',
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+},
+title:{
+  fontSize: 30,
+  textAlign: 'center',
+  flex: 1,
+  alignItems: "center",
+  marginTop: 150,
+   fontWeight: "bold"
+},
+title2:{
+  fontSize: 30,
+  textAlign: 'center',
+  alignItems: "center",
+  flex: 1,
+  margin: 0,
+  marginTop: 30,
+   fontWeight: "bold"
+},
+input: {
+  height: 40,
+  margin: 12,
+  borderWidth: 1,
+  margin: 0,
+  marginTop: 30,
+  padding: 10,
 },
 });
 
