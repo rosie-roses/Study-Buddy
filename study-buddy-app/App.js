@@ -9,7 +9,7 @@ import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
 import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
 import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
-import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/chooseColourCodeScreen";
+import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -65,6 +65,10 @@ function getAllFromFirebase() {
 
 const db = firebase.firestore();
 
+const chosenColor = {
+  colorHex: false
+};
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
@@ -117,14 +121,5 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
 export default App;
-export { db, addToFirebase, getAllFromFirebase };
+export { db, addToFirebase, getAllFromFirebase, chosenColor };

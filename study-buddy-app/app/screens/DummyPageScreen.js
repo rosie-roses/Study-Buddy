@@ -5,11 +5,7 @@ import OverviewPageScreen from "./OverviewPageScreen";
 import AddCoursesPageScreen from "./AddCoursesPageScreen";
 import GradeCalcPageScreen from "./GradeCalcPageScreeen";
 import AccountPageScreen from "./AccountPageScreen";
-import ChooseColourCodeScreen from "./addCoursesScreens/chooseColourCodeScreen";
-import { NavigationContainer } from "@react-navigation/native";
-import * as Icon from "react-native-feather";
-import { StyleSheet } from "react-native";
-import MenuBar from "./MenuBar";
+import MenuBar from "../components/MenuBar";
 
 const DummyPageScreen = (props) => {
     
