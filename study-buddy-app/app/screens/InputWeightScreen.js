@@ -19,7 +19,7 @@ const InputWeightScreen = (props) => {
       <Pressable
       style={styles.entryButton}
         onPress={() => {
-          navigation.navigate("ChooseColourCode");
+          navigation.navigate("AssessmentCreatedScreen");
         }}
       >
        
