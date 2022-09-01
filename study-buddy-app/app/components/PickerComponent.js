@@ -25,7 +25,7 @@ const PickerComponent = () => {
 
 const styles = StyleSheet.create({
   colorContainer: {
-    marginTop: 20,
+    marginTop: 10,
     width: 225,
     height: 275,
   },
