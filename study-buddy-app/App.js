@@ -10,6 +10,8 @@ import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
 import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
 import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
+import InputWeightScreen from "./app/screens/InputWeightScreen";
+import AssessmentCreatedScreen from "./app/screens/AssessmentCreatedScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -110,6 +112,16 @@ function App() {
         <Stack.Screen
           name="ChooseColourCode"
           component={ChooseColourCodePageScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="InputWeightScreen"
+          component={InputWeightScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="AssessmentCreatedScreen"
+          component={AssessmentCreatedScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
