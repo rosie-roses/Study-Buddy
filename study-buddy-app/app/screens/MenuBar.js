@@ -6,6 +6,7 @@
 import React from "react";
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import * as Icon from "react-native-feather";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const MenuBar = ({ state, descriptors, navigation, size }) => {
   return (
@@ -51,9 +52,9 @@ const MenuBar = ({ state, descriptors, navigation, size }) => {
             style={{ flex: 1 }}
           >
             {route.name === "Home" ? <Icon.Home color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
-            {route.name === "Study Time" ? <Icon.Clock color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
-            {route.name === "Add Courses" ? <Icon.PlusSquare color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
             {route.name === "Overview" ? <Icon.BookOpen color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
+            {route.name === "Add Courses" ? <Icon.PlusSquare color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
+            {route.name === "Calculate Grade" ? <MaterialCommunityIcons name="calculator" color={isFocused ? "#673ab7" : "#222"} size={28} style={[styles.labelStyle, styles.gradeCalc]} />  : null}
             {route.name === "Account" ? <Icon.User color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
             <Text
               style={{
@@ -95,6 +96,9 @@ const styles = StyleSheet.create({
         marginRight:"auto",
         marginBottom: 5,
         marginVertical: 10,
+    },
+    gradeCalc: {
+      flex: 0
     }
 });
 

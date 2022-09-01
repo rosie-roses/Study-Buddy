@@ -5,15 +5,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DummyPageScreen from "./app/screens/DummyPageScreen";
 import HomePageScreen from "./app/screens/HomePageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
-import StudyTimePageScreen from "./app/screens/StudyTimePageScreen";
+import StudyTimePageScreen from "./app/screens/OverviewPageScreen";
 import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
-import OverviewPageScreen from "./app/screens/OverviewPageScreen";
+import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
 import * as firebase from "firebase";
 import "firebase/firestore";
+import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDViGClOz4lL3qXicfhlcxjuYqpcw5w8mo",
@@ -86,8 +87,8 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="StudyTime"
-          component={StudyTimePageScreen}
+          name="Overview"
+          component={OverviewPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -96,8 +97,8 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Overview"
-          component={OverviewPageScreen}
+          name="GradeCalculator"
+          component={GradeCalcPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

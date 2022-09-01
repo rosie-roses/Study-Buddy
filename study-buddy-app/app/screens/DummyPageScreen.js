@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import HomePageScreen from "./HomePageScreen";
-import StudyTimePageScreen from "./StudyTimePageScreen";
-import AddCoursesPageScreen from "./AddCoursesPageScreen";
 import OverviewPageScreen from "./OverviewPageScreen";
+import AddCoursesPageScreen from "./AddCoursesPageScreen";
+import GradeCalcPageScreen from "./GradeCalcPageScreeen";
 import AccountPageScreen from "./AccountPageScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import * as Icon from "react-native-feather";
@@ -18,9 +18,9 @@ const DummyPageScreen = (props) => {
     <NavigationContainer independent={true}>
         <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <MenuBar {...props} />}>
             <Tab.Screen name="Home" component={HomePageScreen} />
-            <Tab.Screen name="Study Time" component={StudyTimePageScreen} />
-            <Tab.Screen name="Add Courses" component={AddCoursesPageScreen} />
             <Tab.Screen name="Overview" component={OverviewPageScreen} />
+            <Tab.Screen name="Add Courses" component={AddCoursesPageScreen} />
+            <Tab.Screen name="Calculate Grade" component={GradeCalcPageScreen} />
             <Tab.Screen name="Account" component={AccountPageScreen} />
         </Tab.Navigator>
     </NavigationContainer>
