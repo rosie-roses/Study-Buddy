@@ -5,10 +5,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DummyPageScreen from "./app/screens/DummyPageScreen";
 import HomePageScreen from "./app/screens/HomePageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
-import StudyTimePageScreen from "./app/screens/StudyTimePageScreen";
 import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
-import OverviewPageScreen from "./app/screens/OverviewPageScreen";
+import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
+import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
+import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/chooseColourCodeScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -68,7 +69,7 @@ const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           name="Main"
@@ -86,8 +87,8 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="StudyTime"
-          component={StudyTimePageScreen}
+          name="Overview"
+          component={OverviewPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -96,13 +97,19 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Overview"
-          component={OverviewPageScreen}
+          name="GradeCalculator"
+          component={GradeCalcPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
           name="Account"
           component={AccountPageScreen}
+          options={{ headerShown: false }}
+        />
+        {/* Sub screens for Add courses screen here */}
+        <Stack.Screen
+          name="ChooseColourCode"
+          component={ChooseColourCodePageScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

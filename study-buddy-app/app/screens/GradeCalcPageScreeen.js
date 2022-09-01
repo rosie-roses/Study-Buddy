@@ -1,10 +1,10 @@
 import React from "react";
-import { View, Text, StyleSheet} from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
-const StudyTimePageScreen = (props) => {
+const OverviewPageScreen = (props) => {
   return (
     <View style={styles.container}>
-      <Text>We are in the overview page.</Text>
+      <Text>We are in the grade calculator page.</Text>
     </View>
   );
 };
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default StudyTimePageScreen;
+export default OverviewPageScreen;
