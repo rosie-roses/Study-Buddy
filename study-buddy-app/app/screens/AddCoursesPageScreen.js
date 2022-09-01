@@ -11,8 +11,6 @@ import {
 
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
-  // const [text, onChangeText] = React.useState("Useless Text");
-  // const [number, onChangeNumber] = React.useState(null);
   return (
     <View style={styles.container}>
       <ScrollView>
@@ -26,30 +24,31 @@ const AddCoursesPageScreen = (props) => {
           placeholder="useless placeholder"
           keyboardType="default"
         />
-        <Pressable
-          style={styles.entryButton}
-          onPress={() => {
-            navigation.navigate("ChooseColourCode");
-          }}
-        >
-          <Text style={styles.entryButtonText}>next</Text>
-        </Pressable>
 
         <Pressable
           style={styles.buttonContainer1}
           onPress={() => {
-            navigation.navigate("Overview");
+            navigation.navigate("ChooseColourCode");
           }}
         >
           <Text style={styles.buttonText1}>Add New Course</Text>
+          </Pressable>
           <Pressable
             style={styles.buttonContainer1}
             onPress={() => {
-              navigation.navigate("Account");
+              navigation.navigate("ChooseColourCode");
             }}
           >
             <Text style={styles.buttonText1}>Add Existing Course</Text>
-          </Pressable>
+          
+        </Pressable>
+        <Pressable
+          style={styles.entryButton}
+          onPress={() => {
+            navigation.navigate("InputWeightScreen");
+          }}
+        >
+          <Text style={styles.entryButtonText}>next</Text>
         </Pressable>
       </ScrollView>
     </View>
@@ -72,6 +71,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 30,
   },
   buttonText1: {
     fontSize: 12,
