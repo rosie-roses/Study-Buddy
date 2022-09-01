@@ -67,6 +67,10 @@ function getAllFromFirebase() {
 
 const db = firebase.firestore();
 
+const chosenColor = {
+  colorHex: false
+};
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
@@ -129,14 +133,5 @@ function App() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
-
 export default App;
-export { db, addToFirebase, getAllFromFirebase };
+export { db, addToFirebase, getAllFromFirebase, chosenColor };
