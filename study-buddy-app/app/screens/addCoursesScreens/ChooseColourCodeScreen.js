@@ -26,7 +26,7 @@ const ChooseColourCodeScreen = (props) => {
       <Pressable
         style={styles.doneButton}
         onPress={() => {
-          navigation.navigate("AddCourses");
+          navigation.navigate("Add Courses");
         }}
       >
         <Text style={styles.doneButtonText}>done</Text>

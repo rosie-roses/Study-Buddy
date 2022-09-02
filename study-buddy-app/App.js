@@ -97,11 +97,6 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="AddCourses"
-          component={AddCoursesPageScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
           name="GradeCalculator"
           component={GradeCalcPageScreen}
           options={{ headerShown: false }}

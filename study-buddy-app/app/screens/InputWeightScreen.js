@@ -36,7 +36,7 @@ const InputWeightScreen = (props) => {
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
-            navigation.navigate("AddCourses");
+            navigation.navigate("Add Courses");
           }}
         >
           <Text style={styles.backNextButtonText}>back</Text>
