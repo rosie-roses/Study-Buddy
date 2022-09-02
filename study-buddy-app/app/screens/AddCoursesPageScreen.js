@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+// import React from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,21 +9,28 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-// import { assignmentObj } from "../../App";
+import { assignmentObj } from "../../App";
 
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
-  // console.log("colorCodeHex selected: ", assignmentObj.colorCodeHex);
+  const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>1/4</Text>
-        <Text style={styles.title2}>Give Your Assessment a name....</Text>
-
+        <Text style={styles.title}>Give Your Assessment a name....</Text>
+    
         <TextInput
           style={styles.input}
-          placeholder="useless placeholder"
+          placeholder="Assessment Name"
           keyboardType="default"
+          onChangeText={onChangeText}
+          value={text}
+        onSubmitEditing={() => {
+          // Store user input text to App.
+          assignmentObj.coursename = text;
+        }}
+          
         />
 
         <Pressable
@@ -58,8 +66,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "white",
+    padding: 40,
+    justifyContent: "flex-start",
   },
   buttonContainer1: {
     padding: 10,
@@ -103,12 +112,13 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   title: {
-    fontSize: 30,
-    textAlign: "center",
-    flex: 1,
-    alignItems: "center",
-    marginTop: 150,
     fontWeight: "bold",
+    fontSize: 32,
+    fontFamily: "sans-serif-condensed",
+    letterSpacing: 1,
+    textAlign: "center",
+    marginTop: 40,
+    lineHeight: 40,
   },
   title2: {
     fontSize: 30,
@@ -121,11 +131,15 @@ const styles = StyleSheet.create({
   },
   input: {
     height: 40,
-    margin: 12,
-    borderWidth: 1,
-    margin: 0,
-    marginTop: 50,
+    marginTop: 40,
+    borderWidth: 2,
     padding: 10,
+    borderRadius: 5,
+    borderColor: "#666666",
+    textAlign: "center",
+    fontFamily: "notoserif",
+    letterSpacing: 1,
+    fontSize: 16,
   },
 });
 
