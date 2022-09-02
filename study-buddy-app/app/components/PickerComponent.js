@@ -7,16 +7,15 @@
 import React from "react";
 import { StyleSheet } from "react-native";
 import { TriangleColorPicker, fromHsv } from "react-native-color-picker";
-import { chosenColor } from "../../App";
+import { assignmentObj } from "../../App";
 
-const PickerComponent = () => {
-  return (
+const PickerComponent = () => {  return (
     <TriangleColorPicker
       onColorSelected={(color) => {
-        chosenColor.colorHex = fromHsv(color);
+        assignmentObj.colorCodeHex = fromHsv(color);
       }}
       onColorChange={(color) => {
-        chosenColor.colorHex = fromHsv(color);
+        assignmentObj.colorCodeHex = fromHsv(color);
       }}
       style={styles.colorContainer}
     />
