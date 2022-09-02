@@ -26,10 +26,11 @@ const InputWeightScreen = (props) => {
         <Text style={styles.entryButtonText }>Next</Text>
        
         </Pressable>
+
         <Pressable
       style={styles.entryButton}
         onPress={() => {
-          navigation.navigate("ChooseColourCode");
+          navigation.navigate("AddCourses");
         }}
       >
        

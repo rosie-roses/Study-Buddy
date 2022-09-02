@@ -16,8 +16,6 @@ const AddCoursesPageScreen = (props) => {
       <ScrollView>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title2}>Give Your Assessment a name....</Text>
-        {/* <Text style={styles.title}></Text> */}
-        {/* Testing next sub-screen functionality. */}
 
         <TextInput
           style={styles.input}
@@ -47,6 +45,7 @@ const AddCoursesPageScreen = (props) => {
           onPress={() => {
             navigation.navigate("InputWeightScreen");
           }}
+          
         >
           <Text style={styles.entryButtonText}>next</Text>
         </Pressable>
@@ -61,17 +60,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    flexDirection: "column",
   },
   buttonContainer1: {
     padding: 10,
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#8639d4",
-    flex: 1,
     flexDirection: "row",
+    flexWrap: "wrap",
     justifyContent: "space-between",
-    marginTop: 30,
+    marginTop: 20,
   },
   buttonText1: {
     fontSize: 12,
@@ -80,18 +78,16 @@ const styles = StyleSheet.create({
     color: "white",
     textTransform: "uppercase",
     textAlign: "center",
+    flexDirection: "row",
+    flexWrap: 'wrap',
   },
 
   entryButton: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    // paddingHorizontal: 32,
-    //borderRadius: 5,
-    //elevation: 3,
     backgroundColor: "#8639d4",
     marginTop: 50,
-    // margin: 0,
     marginBottom: 30,
   },
   entryButtonText: {
