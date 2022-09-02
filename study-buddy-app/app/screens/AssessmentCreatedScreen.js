@@ -1,10 +1,22 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Pressable, TextInput, ScrollView } from "react-native";
+import { View, Text, StyleSheet} from "react-native";
+// import * as Icon from "react-native-feather";
+import Icon from "react-native-vector-icons/Ionicons";
 
-const InputWeightScreen = (props) => {
+const AssessmentCreatedScreen = (props) => {
     return(
-        <Text style={styles.title}>3/4</Text>
+        <View style={styles.container}> 
+        <Text style={styles.Icon}></Text>
+        
+         <Text style={styles.title}>Assessment Created!</Text>
+         <Icon name="checkmark-circle-outline" size={200} />
+         <Text style={styles.title2}>Please refer to the courses overview tab
+         in the main menu to view the assignment you created.</Text>
+         
+
+        </View>
+       
+        
     );
 
 };
@@ -20,12 +32,30 @@ const styles = StyleSheet.create({
     title:{
         fontSize: 30,
         textAlign: 'center',
-        flex: 1,
+        // flex: 1,
         alignItems: "center",
-        marginTop: 100,
-         fontWeight: "bold"
+    
+         fontWeight: "bold",
+         marginBottom: 30,
          
       },
+      title2:{
+        fontSize: 20,
+        textAlign: 'center',
+        // flex: 1,
+        alignItems: "center",
+    
+         fontWeight: "bold",
+      },
+      Icon:{
+         flexDirection:'column',
+        // height: '100%',
+        // width: '100%',
+        backgroundColor:'#fff',
+        alignItems:'center',
+        paddingTop:2,
+        justifyContent: 'center',
+       
+      },
 });
-
-export default InputWeightScreen;
+export default AssessmentCreatedScreen;
