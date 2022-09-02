@@ -8,9 +8,11 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
+// import { assignmentObj } from "../../App";
 
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
+  // console.log("colorCodeHex selected: ", assignmentObj.colorCodeHex);
   return (
     <View style={styles.container}>
       <ScrollView>

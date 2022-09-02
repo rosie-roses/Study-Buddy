@@ -22,7 +22,7 @@ const SelectGradeScreen = (props) => {
 
   const [text, onChangeText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
-
+  // console.log("weight selected: ", assignmentObj.weight);
   const gradesList = [
     { "A+ (90% - 100%)": "A+" },
     { "A (85% - 89%)": "A" },
@@ -101,7 +101,7 @@ const SelectGradeScreen = (props) => {
     } 
     // User didn't input anything.
     if (text === "" && selection === "") {
-      assignmentObj.grade = "";
+      assignmentObj.grade = null;
     }
     // console.log("Grade chosen: ", assignmentObj.grade);
   };
@@ -176,7 +176,7 @@ const SelectGradeScreen = (props) => {
       <Pressable
       style={styles.skipButton}
         onPress={() => {
-          assignmentObj.grade = "";
+          assignmentObj.grade = null;
           navigation.navigate("AssessmentCreatedScreen");
         }}
       >
