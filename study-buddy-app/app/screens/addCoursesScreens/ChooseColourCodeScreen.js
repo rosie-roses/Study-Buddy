@@ -8,7 +8,6 @@ const ChooseColourCodeScreen = (props) => {
   const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>2/4</Text>
       <Text style={styles.title}>Choose a new course name and colour: </Text>
       <Text style={styles.text}>Select course name: </Text>
       <SafeAreaView>

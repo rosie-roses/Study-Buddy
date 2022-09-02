@@ -34,7 +34,7 @@ const AddCoursesPageScreen = (props) => {
         <Pressable
           style={styles.buttonContainer2}
           onPress={() => {
-            navigation.navigate("ChooseColourCode");
+            navigation.navigate("InputWeightScreen");
           }}
         >
           <Text style={styles.buttonText1}>Add Existing Course</Text>
