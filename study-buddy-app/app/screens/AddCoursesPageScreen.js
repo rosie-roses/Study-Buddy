@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 // import React from "react";
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -13,24 +13,24 @@ import { assignmentObj } from "../../App";
 
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
+  // console.log("colorCodeHex selected: ", assignmentObj.colorCodeHex);
   const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
       <ScrollView>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title}>Give Your Assessment a name....</Text>
-    
+
         <TextInput
           style={styles.input}
           placeholder="Assessment Name"
           keyboardType="default"
           onChangeText={onChangeText}
           value={text}
-        onSubmitEditing={() => {
-          // Store user input text to App.
-          assignmentObj.coursename = text;
-        }}
-          
+          onSubmitEditing={() => {
+            // Store user input text to App.
+            assignmentObj.coursename = text;
+          }}
         />
 
         <Pressable

@@ -13,6 +13,7 @@ import { assignmentObj } from "../../App";
 const InputWeightScreen = (props) => {
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
+  // console.log("selected course name: ", assignmentObj.coursename);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>2/4</Text>
