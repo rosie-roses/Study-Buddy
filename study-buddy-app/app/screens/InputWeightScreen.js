@@ -32,6 +32,7 @@ const InputWeightScreen = (props) => {
         >
           <Text style={styles.backNextButtonText}>back</Text>
         </Pressable>
+
         <Pressable
           style={styles.backNextButton}
           onPress={() => {

@@ -16,8 +16,6 @@ const AddCoursesPageScreen = (props) => {
       <ScrollView>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title2}>Give Your Assessment a name....</Text>
-        {/* <Text style={styles.title}></Text> */}
-        {/* Testing next sub-screen functionality. */}
 
         <TextInput
           style={styles.input}
@@ -32,23 +30,22 @@ const AddCoursesPageScreen = (props) => {
           }}
         >
           <Text style={styles.buttonText1}>Add New Course</Text>
-          </Pressable>
-          <Pressable
-            style={styles.buttonContainer1}
-            onPress={() => {
-              navigation.navigate("InputWeightScreen");
-            }}
-          >
-            <Text style={styles.buttonText1}>Add Existing Course</Text>
-          
         </Pressable>
         <Pressable
-          style={styles.entryButton}
+          style={styles.buttonContainer2}
+          onPress={() => {
+            navigation.navigate("ChooseColourCode");
+          }}
+        >
+          <Text style={styles.buttonText1}>Add Existing Course</Text>
+        </Pressable>
+        <Pressable
+          style={styles.nextButton}
           onPress={() => {
             navigation.navigate("InputWeightScreen");
           }}
         >
-          <Text style={styles.entryButtonText}>next</Text>
+          <Text style={styles.nextButtonText}>next</Text>
         </Pressable>
       </ScrollView>
     </View>
@@ -61,40 +58,41 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    flexDirection: "column",
   },
   buttonContainer1: {
     padding: 10,
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#8639d4",
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginTop: 30,
+    marginTop: 50,
+  },
+  buttonContainer2: {
+    padding: 10,
+    borderRadius: 5,
+    elevation: 3,
+    backgroundColor: "#8639d4",
+    marginTop: 20,
   },
   buttonText1: {
-    fontSize: 12,
+    fontSize: 16,
     lineHeight: 21,
+    letterSpacing: 1,
     fontWeight: "bold",
     color: "white",
     textTransform: "uppercase",
     textAlign: "center",
   },
 
-  entryButton: {
+  nextButton: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    // paddingHorizontal: 32,
-    //borderRadius: 5,
-    //elevation: 3,
     backgroundColor: "#8639d4",
-    marginTop: 50,
-    // margin: 0,
+    marginTop: 20,
     marginBottom: 30,
+    borderRadius: 5,
   },
-  entryButtonText: {
+  nextButtonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
@@ -124,7 +122,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     margin: 0,
-    marginTop: 30,
+    marginTop: 50,
     padding: 10,
   },
 });
