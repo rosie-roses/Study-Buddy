@@ -30,24 +30,22 @@ const AddCoursesPageScreen = (props) => {
           }}
         >
           <Text style={styles.buttonText1}>Add New Course</Text>
-          </Pressable>
-          <Pressable
-            style={styles.buttonContainer1}
-            onPress={() => {
-              navigation.navigate("ChooseColourCode");
-            }}
-          >
-            <Text style={styles.buttonText1}>Add Existing Course</Text>
-          
         </Pressable>
         <Pressable
-          style={styles.entryButton}
+          style={styles.buttonContainer2}
+          onPress={() => {
+            navigation.navigate("ChooseColourCode");
+          }}
+        >
+          <Text style={styles.buttonText1}>Add Existing Course</Text>
+        </Pressable>
+        <Pressable
+          style={styles.nextButton}
           onPress={() => {
             navigation.navigate("InputWeightScreen");
           }}
-          
         >
-          <Text style={styles.entryButtonText}>next</Text>
+          <Text style={styles.nextButtonText}>next</Text>
         </Pressable>
       </ScrollView>
     </View>
@@ -66,31 +64,35 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#8639d4",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
+    marginTop: 50,
+  },
+  buttonContainer2: {
+    padding: 10,
+    borderRadius: 5,
+    elevation: 3,
+    backgroundColor: "#8639d4",
     marginTop: 20,
   },
   buttonText1: {
-    fontSize: 12,
+    fontSize: 16,
     lineHeight: 21,
+    letterSpacing: 1,
     fontWeight: "bold",
     color: "white",
     textTransform: "uppercase",
     textAlign: "center",
-    flexDirection: "row",
-    flexWrap: 'wrap',
   },
 
-  entryButton: {
+  nextButton: {
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
     backgroundColor: "#8639d4",
-    marginTop: 50,
+    marginTop: 20,
     marginBottom: 30,
+    borderRadius: 5,
   },
-  entryButtonText: {
+  nextButtonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
     margin: 12,
     borderWidth: 1,
     margin: 0,
-    marginTop: 30,
+    marginTop: 50,
     padding: 10,
   },
 });
