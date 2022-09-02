@@ -1,5 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+// import React from "react";
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 
+
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
   return (
@@ -16,11 +18,12 @@ const AddCoursesPageScreen = (props) => {
       <ScrollView>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title2}>Give Your Assessment a name....</Text>
-
+    
         <TextInput
           style={styles.input}
           placeholder="useless placeholder"
           keyboardType="default"
+          onChangeText={newText => setText(newText)}
         />
 
         <Pressable

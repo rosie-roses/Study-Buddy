@@ -12,7 +12,6 @@ const AssessmentCreatedScreen = (props) => {
          <Icon name="checkmark-circle-outline" color={"green"} size={200} />
          <Text style={styles.title2}>Please refer to the courses overview tab
          in the main menu to view the assignment you created.</Text>
-         
 
         </View>
        
