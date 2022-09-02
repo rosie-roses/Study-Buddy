@@ -169,12 +169,12 @@ const SelectGradeScreen = (props) => {
             setGrade(parseFloat(text), selection);
             // Should be making the assignment object here.
             console.log(
-              "Assignment object: name - " + assignmentObj.coursename,
-              ", colour code - " + assignmentObj.colorCodeHex,
+              "Assignment object: name - " + assignmentObj.courseName,
+              ", colour code - " + assignmentObj.colorCode,
               ", weight - " + assignmentObj.weight,
               ", grade - " + assignmentObj.grade
             );
-            addToFirebase(assignmentObj.coursename, assignmentObj.colorCodeHex, assignmentObj.weight, assignmentObj.grade);
+            addToFirebase(assignmentObj.courseName, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
             navigation.navigate("AssessmentCreatedScreen");
           }}
         >
