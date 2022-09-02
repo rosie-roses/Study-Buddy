@@ -71,6 +71,7 @@ const db = firebase.firestore();
 const assignmentObj = {
   colorCodeHex: "",
   weight: "",
+  coursename: "",
 };
 
 const Stack = createNativeStackNavigator(); // Navigation.

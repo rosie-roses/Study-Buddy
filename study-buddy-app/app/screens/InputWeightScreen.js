@@ -58,9 +58,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
     backgroundColor: "white",
     padding: 40,
+    justifyContent: "flex-start",
   },
   backNextButton: {
     paddingVertical: 12,
