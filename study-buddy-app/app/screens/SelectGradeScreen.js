@@ -19,7 +19,7 @@ import * as Icon from "react-native-feather";
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
-  const countries = [
+  const gradesList = [
     "A+ (90% - 100%)",
     "A (85% - 89%)",
     "A- (80% - 84%)",
@@ -34,6 +34,7 @@ const SelectGradeScreen = (props) => {
   ];
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>3/4</Text>
       <Text style={styles.title}>
         What grade did you get for this assignment?
       </Text>
@@ -53,9 +54,7 @@ const SelectGradeScreen = (props) => {
         />
       </SafeAreaView>
       <SelectDropdown
-        data={countries}
-        // defaultValueByIndex={1}
-        // defaultValue={'England'}
+        data={gradesList}
         onSelect={(selectedItem, index) => {
           console.log(selectedItem, index);
         }}
@@ -84,7 +83,7 @@ const SelectGradeScreen = (props) => {
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
-            navigation.navigate("Dummy");
+            navigation.navigate("InputWeightScreen");
           }}
         >
           <Text style={styles.backNextButtonText}>back</Text>
@@ -92,7 +91,7 @@ const SelectGradeScreen = (props) => {
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
-            navigation.navigate("Dummy");
+            navigation.navigate("AssessmentCreatedScreen");
           }}
         >
           <Text style={styles.backNextButtonText}>next</Text>

@@ -9,7 +9,7 @@ const AssessmentCreatedScreen = (props) => {
         <Text style={styles.Icon}></Text>
         
          <Text style={styles.title}>Assessment Created!</Text>
-         <Icon name="checkmark-circle-outline" size={200} />
+         <Icon name="checkmark-circle-outline" color={"green"} size={200} />
          <Text style={styles.title2}>Please refer to the courses overview tab
          in the main menu to view the assignment you created.</Text>
          
@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         backgroundColor: "white",
-        flexDirection: "column",
+        padding: 40
     },
     title:{
         fontSize: 30,
@@ -42,19 +42,13 @@ const styles = StyleSheet.create({
       title2:{
         fontSize: 20,
         textAlign: 'center',
-        // flex: 1,
         alignItems: "center",
-    
+        marginTop: 30,
          fontWeight: "bold",
       },
       Icon:{
          flexDirection:'column',
-        // height: '100%',
-        // width: '100%',
         backgroundColor:'#fff',
-        alignItems:'center',
-        paddingTop:2,
-        justifyContent: 'center',
        
       },
 });
