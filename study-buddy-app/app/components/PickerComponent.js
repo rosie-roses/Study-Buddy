@@ -12,10 +12,10 @@ import { assignmentObj } from "../../App";
 const PickerComponent = () => {  return (
     <TriangleColorPicker
       onColorSelected={(color) => {
-        assignmentObj.colorCodeHex = fromHsv(color);
+        assignmentObj.colorCode = fromHsv(color);
       }}
       onColorChange={(color) => {
-        assignmentObj.colorCodeHex = fromHsv(color);
+        assignmentObj.colorCode = fromHsv(color);
       }}
       style={styles.colorContainer}
     />
