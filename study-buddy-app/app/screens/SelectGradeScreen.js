@@ -15,7 +15,7 @@ import {
  */
 import SelectDropdown from "react-native-select-dropdown";
 import * as Icon from "react-native-feather";
-import { assignmentObj } from "../../App";
+import { addToFirebase, assignmentObj } from "../../App";
 
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
@@ -98,7 +98,7 @@ const SelectGradeScreen = (props) => {
       let index = gradeKeys.indexOf(key);
       grade = gradesList[index][key];
       assignmentObj.grade = grade;
-    } 
+    }
     // User didn't input anything.
     if (text === "" && selection === "") {
       assignmentObj.grade = null;
@@ -167,6 +167,14 @@ const SelectGradeScreen = (props) => {
           style={styles.backNextButton}
           onPress={() => {
             setGrade(parseFloat(text), selection);
+            // Should be making the assignment object here.
+            console.log(
+              "Assignment object: name - " + assignmentObj.coursename,
+              ", colour code - " + assignmentObj.colorCodeHex,
+              ", weight - " + assignmentObj.weight,
+              ", grade - " + assignmentObj.grade
+            );
+            addToFirebase(assignmentObj.coursename, assignmentObj.colorCodeHex, assignmentObj.weight, assignmentObj.grade);
             navigation.navigate("AssessmentCreatedScreen");
           }}
         >
@@ -174,7 +182,7 @@ const SelectGradeScreen = (props) => {
         </Pressable>
       </View>
       <Pressable
-      style={styles.skipButton}
+        style={styles.skipButton}
         onPress={() => {
           assignmentObj.grade = null;
           navigation.navigate("AssessmentCreatedScreen");
@@ -279,7 +287,7 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginTop: 30,
     borderBottomColor: "#8639d4",
-    borderBottomWidth: 2
+    borderBottomWidth: 2,
   },
   skipButtonText: {
     color: "#000",
@@ -288,7 +296,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     letterSpacing: 1,
     textTransform: "uppercase",
-  }
+  },
 });
 
 export default SelectGradeScreen;

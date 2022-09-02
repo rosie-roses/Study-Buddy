@@ -37,20 +37,20 @@ if (!firebase.apps.length) {
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
 
-function addToFirebase() {
+function addToFirebase(name, colorCode, weight, grade) {
   db.collection("assignments")
     .add({
-      name: "assignment2",
-      colorCode: "#000000",
-      weight: 10,
-      grade: "B",
+      name: name,
+      colorCode: colorCode,
+      weight: weight,
+      grade: grade,
     })
     .then((docRef) => {
-      console.log("Document written with ID: ", docRef.id);
+      console.log("Added assignment object with ID: ", docRef.id);
       reportID = docRef.id;
     })
     .catch((error) => {
-      console.error("Error adding document: ", error);
+      console.error("Error adding assignment to firebase: ", error);
     });
 }
 
