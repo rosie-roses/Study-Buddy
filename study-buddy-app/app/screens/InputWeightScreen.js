@@ -28,7 +28,7 @@ const InputWeightScreen = (props) => {
         value={text}
         onSubmitEditing={() => {
           // Store user input text to App.
-          assignmentObj.weight = text;
+          assignmentObj.weight = parseInt(text); // Will be NaN if user didn't input anything.
         }}
       />
       <View style={styles.buttonContainer}>
