@@ -68,8 +68,9 @@ function getAllFromFirebase() {
 
 const db = firebase.firestore();
 
-const chosenColor = {
-  colorHex: false,
+const assignmentObj = {
+  colorCodeHex: "",
+  weight: "",
 };
 
 const Stack = createNativeStackNavigator(); // Navigation.
@@ -86,11 +87,6 @@ function App() {
         <Stack.Screen
           name="Dummy"
           component={DummyPageScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Home"
-          component={HomePageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -140,4 +136,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, getAllFromFirebase, chosenColor };
+export { db, addToFirebase, getAllFromFirebase, assignmentObj };

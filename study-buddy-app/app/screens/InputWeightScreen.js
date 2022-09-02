@@ -8,10 +8,11 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
+import { assignmentObj } from "../../App";
 
 const InputWeightScreen = (props) => {
   const navigation = useNavigation();
-
+  const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
       <Text style={styles.title}>2/4</Text>
@@ -20,8 +21,15 @@ const InputWeightScreen = (props) => {
       </Text>
       <TextInput
         style={styles.input}
-        placeholder="useless placeholder"
-        keyboardType="default"
+        placeholder="15%"
+        placeholderTextColor="#4f4f4f"
+        keyboardType="numeric"
+        onChangeText={onChangeText}
+        value={text}
+        onSubmitEditing={() => {
+          // Store user input text to App.
+          assignmentObj.weight = text;
+        }}
       />
       <View style={styles.buttonContainer}>
         <Pressable
@@ -86,14 +94,18 @@ const styles = StyleSheet.create({
     lineHeight: 40,
   },
   input: {
-    height: 55,
+    height: 40,
+    width: 200,
     margin: 12,
-    borderWidth: 1,
-    margin: 0,
     marginTop: 30,
     padding: 10,
     marginRight: 90,
     marginLeft: 90,
+    borderWidth: 2,
+    borderRadius: 5,
+    borderColor: "#666666",
+    textAlign: "center",
+    fontFamily: "notoserif",
   },
 });
 
