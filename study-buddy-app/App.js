@@ -69,9 +69,10 @@ function getAllFromFirebase() {
 const db = firebase.firestore();
 
 const assignmentObj = {
-  colorCodeHex: "",
-  weight: "",
-  coursename: "",
+  coursename: null,
+  colorCodeHex: null, // String.
+  weight: null, // Number.
+  grade: null, // String.
 };
 
 const Stack = createNativeStackNavigator(); // Navigation.
