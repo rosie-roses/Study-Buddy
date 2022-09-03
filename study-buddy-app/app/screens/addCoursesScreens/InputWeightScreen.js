@@ -8,12 +8,12 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { assignmentObj } from "../../App";
+import { assignmentObj } from "../../../App";
 
 const InputWeightScreen = (props) => {
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
-  // console.log("selected course name: ", assignmentObj.coursename);
+  // console.log("selected course name: ", assignmentObj.assignmentName);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>2/4</Text>

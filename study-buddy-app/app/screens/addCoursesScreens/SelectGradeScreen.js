@@ -15,7 +15,7 @@ import {
  */
 import SelectDropdown from "react-native-select-dropdown";
 import * as Icon from "react-native-feather";
-import { addToFirebase, assignmentObj } from "../../App";
+import { addToFirebase, assignmentObj } from "../../../App";
 
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
@@ -169,12 +169,12 @@ const SelectGradeScreen = (props) => {
             setGrade(parseFloat(text), selection);
             // Should be making the assignment object here.
             console.log(
-              "Assignment object: name - " + assignmentObj.courseName,
-              ", colour code - " + assignmentObj.colorCode,
-              ", weight - " + assignmentObj.weight,
-              ", grade - " + assignmentObj.grade
+              "Assignment object => name:" + assignmentObj.assignmentName,
+              ", colour code: " + assignmentObj.colorCode,
+              ", weight: " + assignmentObj.weight,
+              ", grade: " + assignmentObj.grade
             );
-            addToFirebase(assignmentObj.courseName, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
+            addToFirebase(assignmentObj.assignmentName, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
             navigation.navigate("AssessmentCreatedScreen");
           }}
         >

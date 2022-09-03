@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { assignmentObj } from "../../App";
+import { assignmentObj } from "../../../App";
 
 const AssessmentCreatedScreen = (props) => {
     const navigation = useNavigation();
