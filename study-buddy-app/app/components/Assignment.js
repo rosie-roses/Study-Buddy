@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Pressable, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 /**
  * Displays each assignment stored in the database as a Assignment component 
  * which is rendered as a pressable.
@@ -16,13 +16,28 @@ class Assignment extends Component {
   }
   render() {
     return (
-      <Pressable onPress={() => console.log("pressed")}>
+      <Pressable style={styles.assignmentContainer} onPress={() => console.log("pressed")}>
         <Text>
-          Assignment Name: {this.state.assignmentName}, Color Code: {this.state.colorCode}, Weight: {this.state.weight}, Grade: {this.state.grade}
+          <Text style={styles.property}>Assignment Name:</Text> {this.state.assignmentName},
+          <Text style={styles.property}> Color Code:</Text> {this.state.colorCode}, 
+          <Text style={styles.property}> Weight:</Text> {this.state.weight}, 
+          <Text style={styles.property}> Grade:</Text> {this.state.grade}
         </Text>
       </Pressable>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  assignmentContainer: {
+    borderWidth: 2,
+    borderColor: "#DDDDDD",
+    marginBottom: 30,
+    padding: 20
+  },
+  property: {
+    fontWeight: "bold",
+  }
+})
 
 export default Assignment;
