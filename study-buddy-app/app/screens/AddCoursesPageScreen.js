@@ -29,7 +29,7 @@ const AddCoursesPageScreen = (props) => {
           value={text}
           onSubmitEditing={() => {
             // Store user input text to App.
-            assignmentObj.courseName = text;
+            assignmentObj.assignmentName = text;
           }}
         />
 

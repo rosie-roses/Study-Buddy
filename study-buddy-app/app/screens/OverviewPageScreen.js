@@ -1,36 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-import { allAssignments, db, getAllFromFirebase } from "../../App";
+import printAssignments, { jsonObjs } from "../helperFunctions/PrintAssignments";
 
-const StudyTimePageScreen = (props) => {
-  const [allAssignments, setAllAssignments] = React.useState([]);
-  
-  React.useEffect(() => {
-    setAllAssignments(getAllFromFirebase.retrieve());
-  }, []);
-
-  function iterateAll() {
-    allAssignments.forEach((item) => {
-      console.log(
-        "name - " + item.courseName,
-        ", colour code - " + item.colorCode,
-        ", weight - " + item.weight,
-        ", grade - " + item.grade
-      );
-    });
-  }
+const OverviewPageScreen = (props) => {
+  // const [allAssignments, setAllAssignments] = React.useState([]);
 
   return (
     <View style={styles.container}>
       <Text>We are in the overview page.</Text>
-      <Pressable
-          style={styles.backNextButton}
-          onPress={() => {
-            iterateAll();
-          }}
-        >
-          <Text style={styles.backNextButtonText}>test</Text>
-        </Pressable>
+      {/* Display all assignments from database on screen */}
+      <View>{printAssignments()}</View> 
     </View>
   );
 };
@@ -41,6 +20,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
+    padding: 40
   },
   backNextButton: {
     paddingVertical: 12,
@@ -60,4 +40,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default StudyTimePageScreen;
+export default OverviewPageScreen;

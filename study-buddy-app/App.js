@@ -10,9 +10,9 @@ import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
 import AccountPageScreen from "./app/screens/AccountPageScreen";
 import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
 import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
-import InputWeightScreen from "./app/screens/InputWeightScreen";
-import AssessmentCreatedScreen from "./app/screens/AssessmentCreatedScreen";
-import SelectGradeScreen from "./app/screens/SelectGradeScreen";
+import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
+import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
+import SelectGradeScreen from "./app/screens/addCoursesScreens/SelectGradeScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -40,7 +40,7 @@ var reportID = "";
 function addToFirebase(name, colorCode, weight, grade) {
   db.collection("assignments")
     .add({
-      courseName: name,
+      assignmentName: name,
       colorCode: colorCode,
       weight: weight,
       grade: grade,
@@ -53,27 +53,12 @@ function addToFirebase(name, colorCode, weight, grade) {
       console.error("Error adding assignment to firebase: ", error);
     });
 }
-
-/* Test to see if we can get from firebase. Received help from >> https://firebase.google.com/docs/firestore. */
-const getAllFromFirebase = {
-  retrieve: function() {
-    const allAssignments = [];
-    db.collection("assignments")
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        allAssignments.push(doc.data());
-      });
-    });
-    return allAssignments;
-  }
-}
+const allAssignments = [];
 
 const db = firebase.firestore();
 
 const assignmentObj = {
-  courseName: null,
+  assignmentName: null, // String.
   colorCode: null, // String.
   weight: null, // Number.
   grade: null, // String.
@@ -137,4 +122,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, getAllFromFirebase, assignmentObj };
+export { db, addToFirebase, assignmentObj, allAssignments };
