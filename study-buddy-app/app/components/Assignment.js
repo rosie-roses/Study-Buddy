@@ -4,28 +4,20 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
  * Displays each assignment stored in the database as a Assignment component 
  * which is rendered as a pressable.
  */
-class Assignment extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      assignmentName: this.props.assignmentName,
-      colorCode: this.props.colorCode,
-      weight: this.props.weight,
-      grade: this.props.grade,
-    };
-  }
-  render() {
+
+const Assignment = (props) =>  {
     return (
       <Pressable style={styles.assignmentContainer} onPress={() => console.log("pressed")}>
-        <Text>
-          <Text style={styles.property}>Assignment Name:</Text> {this.state.assignmentName},
-          <Text style={styles.property}> Color Code:</Text> {this.state.colorCode}, 
-          <Text style={styles.property}> Weight:</Text> {this.state.weight}, 
-          <Text style={styles.property}> Grade:</Text> {this.state.grade}
-        </Text>
+        <View style={[styles.colourBar, {backgroundColor: props.colorCode}]}></View>
+        <View style={styles.assignmentContent}>
+            <Text style={styles.assignmentName}>{props.assignmentName}</Text>
+            <View style={styles.assignmentInfo}>
+            <Text style={[styles.info, {marginRight: 5}]}><Text style={styles.label}>Weight:</Text> {props.weight}%,</Text>
+            <Text style={styles.info}><Text style={styles.label}>Grade:</Text>  {props.grade}</Text>
+            </View>
+        </View>
       </Pressable>
     );
-  }
 }
 
 const styles = StyleSheet.create({
@@ -33,10 +25,37 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#DDDDDD",
     marginBottom: 30,
-    padding: 20
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
-  property: {
+  colourBar: {
+    width: "5%",
+    height: "auto"
+  },
+  assignmentContent: {
+    padding: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    width: "95%",
+    fontFamily: "notoserif",
+  },
+  assignmentName: {
     fontWeight: "bold",
+    fontSize: 18,
+  },
+  assignmentInfo: {
+    flex: 1,
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginTop: 20
+  },
+  info: {
+    fontSize: 16,
+  },
+  label: {
+    fontWeight: "bold",
+    letterSpacing: 0.5
   }
 })
 
