@@ -53,6 +53,21 @@ function addToFirebase(name, colorCode, weight, grade) {
       console.error("Error adding assignment to firebase: ", error);
     });
 }
+
+function addStudyTipToFirebase(studytipstring) {
+  db.collection("studytips")
+    .add({
+     studytipstring: studytipstring,
+    })
+    .then((docRef) => {
+      console.log("Added study tip with ID: ", docRef.id);
+      reportID = docRef.id;
+    })
+    .catch((error) => {
+      console.error("Error adding study tip to firebase: ", error);
+    });
+}
+
 const allAssignments = [];
 
 const db = firebase.firestore();
@@ -116,10 +131,15 @@ function App() {
           component={SelectGradeScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="HomePageScreen"
+          component={HomePageScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase };

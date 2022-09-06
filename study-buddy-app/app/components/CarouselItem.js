@@ -1,27 +1,16 @@
-import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Dimensions,
-} from "react-native";
-import { NavItem } from "react-bootstrap";
-import CarouselFunctionality from "../components/CarouselFunctionality";
-import { data } from "../assets/data";
-import CarouselItem from "../components/CarouselItem";
+import React from 'react'
+import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 
-const { width, height } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window')
 
-const HomePageScreen = ({ props }) => {
-  return (
+const CarouselItem = ({ item }) => {
+    return (
     <View style={styles.container}>
-      {/* <Text style={styles.title}>Study Buddy</Text>  */}
-      {/* <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text> */}
-    
-      <CarouselFunctionality data={data}/>
+        <Image style={{width: 100, height: 100}}source={{ uri: item.url }} />
+            <Text> {item.title} </Text>
+            <Text> {item.description} </Text>
     </View>
-  );
+    )
 }
 
 const styles = StyleSheet.create({
@@ -31,6 +20,7 @@ const styles = StyleSheet.create({
       backgroundColor: "white",
       padding: 40,
       justifyContent: "flex-start",
+    //   width: 200,
   
     },
     title: {
@@ -64,4 +54,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default HomePageScreen
+export default CarouselItem
