@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-import { NavItem } from "react-bootstrap";
+// import { NavItem } from "react-bootstrap";
 import CarouselFunctionality from "../components/CarouselFunctionality";
 import { data } from "../assets/data";
 import CarouselItem from "../components/CarouselItem";
