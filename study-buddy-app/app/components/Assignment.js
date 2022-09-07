@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import MainModal from "./MainModal";
 /**
  * Displays each assignment stored in the database as a Assignment component 
  * which is rendered as a pressable.
  */
 
 const Assignment = (props) =>  {
+  const [open, setOpen] = React.useState(false)
     return (
-      <Pressable style={styles.assignmentContainer} onPress={() => console.log("pressed")}>
+      <View>
+      <Pressable style={styles.assignmentContainer} onPress={() => setOpen(true)}>
         <View style={[styles.colourBar, {backgroundColor: props.colorCode}]}></View>
         <View style={styles.assignmentContent}>
             <Text style={styles.assignmentName}>{props.assignmentName}</Text>
@@ -17,6 +20,8 @@ const Assignment = (props) =>  {
             </View>
         </View>
       </Pressable>
+      <MainModal open={open} onClose={() => setOpen(false)} colorCode={props.colorCode} assignmentName={props.assignmentName} />
+      </View>
     );
 }
 
