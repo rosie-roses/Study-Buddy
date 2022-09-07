@@ -3,9 +3,18 @@ import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Modal from "react-native-modal";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { currentlyEditing } from "../../App";
+import { currentlyEditing, refreshCurrentlyEditing } from "../../App";
 
-const MainModal = ({ open, onClose, colorCode, docID, assignmentName }) => {
+const MainModal = ({
+  open,
+  onClose,
+  colorCode,
+  docID,
+  assignmentName,
+  assignmentColorCode,
+  assignmentGrade,
+  assignmentWeight,
+}) => {
   const navigation = useNavigation();
   return (
     <View>
@@ -34,7 +43,12 @@ const MainModal = ({ open, onClose, colorCode, docID, assignmentName }) => {
             <Pressable
               onPress={() => {
                 onClose();
+                refreshCurrentlyEditing();
                 currentlyEditing.docID = docID;
+                currentlyEditing.assignmentName = assignmentName;
+                currentlyEditing.colorCode = assignmentColorCode;
+                currentlyEditing.weight = assignmentWeight;
+                currentlyEditing.grade = assignmentGrade;
                 navigation.navigate("EditAssignments");
               }}
             >
@@ -70,6 +84,8 @@ const styles = StyleSheet.create({
   modal: {
     flex: 1,
     justifyContent: "center",
+    paddingRight: 20,
+    paddingLeft: 20,
   },
   modalBox: {
     backgroundColor: "#FFF",

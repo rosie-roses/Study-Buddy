@@ -3,33 +3,52 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { close } from "../../App";
 import MainModal from "./MainModal";
 /**
- * Displays each assignment stored in the database as a Assignment component 
+ * Displays each assignment stored in the database as a Assignment component
  * which is rendered as a pressable.
  */
 
-const Assignment = (props) =>  {
+const Assignment = (props) => {
   const [open, setOpen] = React.useState(close);
-    return (
-      <View>
-      <Pressable style={styles.assignmentContainer} onPress={() => {
+  return (
+    <View>
+      <Pressable
+        style={styles.assignmentContainer}
+        onPress={() => {
           setOpen(true);
-        }}>
-        <View style={[styles.colourBar, {backgroundColor: props.colorCode}]}></View>
+        }}
+      >
+        <View
+          style={[styles.colourBar, { backgroundColor: props.colorCode }]}
+        ></View>
         <View style={styles.assignmentContent}>
-            <Text style={styles.assignmentName}>{props.assignmentName}</Text>
-            <View style={styles.assignmentInfo}>
-            <Text style={[styles.info, {marginRight: 5}]}><Text style={styles.label}>Weight:</Text> {props.weight}%,</Text>
-            <Text style={styles.info}><Text style={styles.label}>Grade:</Text>  {props.grade}</Text>
-            </View>
+          <Text style={styles.assignmentName}>{props.assignmentName}</Text>
+          <View style={styles.assignmentInfo}>
+            <Text style={[styles.info, { marginRight: 5 }]}>
+              <Text style={styles.label}>Weight:</Text> {props.weight}%,
+            </Text>
+            <Text style={styles.info}>
+              <Text style={styles.label}>Grade:</Text> {props.grade}
+            </Text>
+          </View>
         </View>
       </Pressable>
-      <View>{ open &&
-      <MainModal open={open} onClose={() => setOpen(false)} colorCode={props.colorCode} docID={props.firebaseID} assignmentName={props.assignmentName} />
-}
-</View>
+      <View>
+        {open && (
+          <MainModal
+            open={open}
+            onClose={() => setOpen(false)}
+            colorCode={props.colorCode}
+            docID={props.firebaseID}
+            assignmentName={props.assignmentName}
+            assignmentColorCode={props.colorCode}
+            assignmentGrade={props.grade}
+            assignmentWeight={props.weight}
+          />
+        )}
       </View>
-    );
-}
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   assignmentContainer: {
@@ -38,11 +57,11 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     flex: 1,
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   colourBar: {
     width: "5%",
-    height: "auto"
+    height: "auto",
   },
   assignmentContent: {
     padding: 20,
@@ -59,15 +78,15 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
-    marginTop: 20
+    marginTop: 20,
   },
   info: {
     fontSize: 16,
   },
   label: {
     fontWeight: "bold",
-    letterSpacing: 0.5
-  }
-})
+    letterSpacing: 0.5,
+  },
+});
 
 export default Assignment;

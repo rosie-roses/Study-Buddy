@@ -17,25 +17,27 @@ import SelectDropdown from "react-native-select-dropdown";
 import * as Icon from "react-native-feather";
 import { addToFirebase, assignmentObj } from "../../../App";
 
+const gradesList = [
+  { "A+ (90% - 100%)": "A+" },
+  { "A (85% - 89%)": "A" },
+  { "A- (80% - 84%)": "A-" },
+  { "B+ (75% - 79%)": "B+" },
+  { "B (70% - 74%)": "B" },
+  { "B- (65% - 69%)": "B-" },
+  { "C+ (60% - 64%)": "C+" },
+  { "C (55% - 59%)": "C" },
+  { "C- (50% - 54%)": "C-" },
+  { "D (40% - 49%)": "D" },
+  { "E  (0% - 39%)": "E" },
+];
+
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
 
   const [text, onChangeText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
   // console.log("weight selected: ", assignmentObj.weight);
-  const gradesList = [
-    { "A+ (90% - 100%)": "A+" },
-    { "A (85% - 89%)": "A" },
-    { "A- (80% - 84%)": "A-" },
-    { "B+ (75% - 79%)": "B+" },
-    { "B (70% - 74%)": "B" },
-    { "B- (65% - 69%)": "B-" },
-    { "C+ (60% - 64%)": "C+" },
-    { "C (55% - 59%)": "C" },
-    { "C- (50% - 54%)": "C-" },
-    { "D (40% - 49%)": "D" },
-    { "E  (0% - 39%)": "E" },
-  ];
+
   const gradeKeys = [];
   gradesList.map((item) => {
     let keys = Object.keys(item);
@@ -47,7 +49,6 @@ const SelectGradeScreen = (props) => {
     let grade = "";
     if (selection === "") {
       // User didn't use drop down
-      let number = parseFloat(text);
       if (number >= 90 && number <= 100) {
         // A+
         grade = "A+";
@@ -124,7 +125,6 @@ const SelectGradeScreen = (props) => {
           keyboardType="numeric"
           placeholder="75%"
           placeholderTextColor="#4f4f4f"
-          maxLength={7}
         />
       </SafeAreaView>
       <SelectDropdown
@@ -300,3 +300,4 @@ const styles = StyleSheet.create({
 });
 
 export default SelectGradeScreen;
+export {gradesList };

@@ -6,7 +6,7 @@ const OverviewPageScreen = (props) => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-      <Text style={styles.title}>Assessments Overview</Text>
+      <Text style={styles.title}>Assessments</Text>
       {/* Display all assignments from database on screen */}
       <View>{printAssignments()}</View> 
       </ScrollView>
@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
     paddingTop: StatusBar.currentHeight,
   },
   scrollView: {
-    padding: 20
+    padding: 40,
+    paddingTop: 20
   },
   title: {
     fontWeight: "bold",
