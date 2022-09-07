@@ -7,7 +7,7 @@ let flatList
 
 const CarouselFunctionality = ({ data }) => {
     const scrollX = new Animated.Value(0)
-    let position = Animated.divide(scrollY, width)
+    let position = Animated.divide(scrollX, width)
     const [dataList, setDataList] = useState(data)
 
     useEffect(() => {
