@@ -12,14 +12,9 @@ import { data } from "../assets/data";
 const HomePageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Study Buddy</Text>  
-      <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back!{'\n'}</Text>
-      See the 'Overview' section to view all your logged assessments.</Text>
+      <Text style={styles.title}>Study Tips</Text>  
       <CarouselFunctionality data={data}/>
     </View>
-
-    
-      
   );
 }
 
@@ -33,15 +28,13 @@ const styles = StyleSheet.create({
 
     title: {
       fontWeight: "bold",
-      fontSize: 40,
+      fontSize: 32,
       fontFamily: "sans-serif-condensed",
-      lineHeight: 60,
-      marginTop: 15,
-      borderWidth: 5,
-      padding: 20,
-      borderRadius: 5,
-      borderColor: "#8639d4",
+      letterSpacing: 1,
       textAlign: "center",
+      marginTop: 175,
+      marginBottom: 30,
+      lineHeight: 40,
     },
     welcomebox: {
       fontSize: 25,
