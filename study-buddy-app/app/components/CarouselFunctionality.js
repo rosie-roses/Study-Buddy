@@ -30,7 +30,7 @@ const CarouselFunctionality = () => {
             height: 10,
             borderRadius: 5,
             marginHorizontal: 8,
-            backgroundColor: '#F4BB41',
+            backgroundColor: '#8639d4',
           }}
           tappableDots={true}
           inactiveDotStyle={{

@@ -12,12 +12,9 @@ import { data } from "../assets/data";
 const HomePageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Study Buddy</Text>  
-      <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text>
+      <Text style={styles.title}>Study Tips</Text>  
       <CarouselFunctionality data={data}/>
     </View>
-    
-      
   );
 }
 
@@ -31,21 +28,17 @@ const styles = StyleSheet.create({
 
     title: {
       fontWeight: "bold",
-      fontSize: 40,
+      fontSize: 32,
       fontFamily: "sans-serif-condensed",
-      lineHeight: 60,
-      marginTop: 15,
-      borderWidth: 5,
-      padding: 20,
-      borderRadius: 5,
-      borderColor: "#8639d4",
+      letterSpacing: 1,
       textAlign: "center",
+      marginTop: 175,
+      marginBottom: 30,
+      lineHeight: 40,
     },
     welcomebox: {
-     // fontWeight: "bold",
       fontSize: 25,
       fontFamily: "sans-serif-condensed",
-      //lineHeight: 60,
       marginTop: 50,
       borderWidth: 5,
       padding: 20,
@@ -60,4 +53,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default HomePageScreen
+export default HomePageScreen;
