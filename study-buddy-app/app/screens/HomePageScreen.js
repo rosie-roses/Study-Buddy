@@ -16,10 +16,10 @@ const { width, height } = Dimensions.get('window');
 const HomePageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
-      {/* <Text style={styles.title}>Study Buddy</Text>  */}
-      {/* <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text> */}
+      <Text style={styles.title}>Study Buddy</Text> 
+      <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text>
     
-      {/* <CarouselFunctionality data={data}/> */}
+      <CarouselFunctionality data={data}/>
     </View>
   );
 }

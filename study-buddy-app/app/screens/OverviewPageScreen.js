@@ -3,11 +3,10 @@ import { View, Text, StyleSheet, Pressable, SafeAreaView, ScrollView, StatusBar 
 import printAssignments from "../helperFunctions/PrintAssignments";
 
 const OverviewPageScreen = (props) => {
-
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView}>
-      <Text style={styles.title}>Assessments</Text>
+      <Text style={styles.title}>Assessments Overview</Text>
       {/* Display all assignments from database on screen */}
       <View>{printAssignments()}</View> 
       </ScrollView>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { close } from "../../App";
 import MainModal from "./MainModal";
 /**
  * Displays each assignment stored in the database as a Assignment component 
@@ -7,10 +8,12 @@ import MainModal from "./MainModal";
  */
 
 const Assignment = (props) =>  {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(close);
     return (
       <View>
-      <Pressable style={styles.assignmentContainer} onPress={() => setOpen(true)}>
+      <Pressable style={styles.assignmentContainer} onPress={() => {
+          setOpen(true);
+        }}>
         <View style={[styles.colourBar, {backgroundColor: props.colorCode}]}></View>
         <View style={styles.assignmentContent}>
             <Text style={styles.assignmentName}>{props.assignmentName}</Text>
@@ -20,7 +23,10 @@ const Assignment = (props) =>  {
             </View>
         </View>
       </Pressable>
-      <MainModal open={open} onClose={() => setOpen(false)} colorCode={props.colorCode} assignmentName={props.assignmentName} />
+      <View>{ open &&
+      <MainModal open={open} onClose={() => setOpen(false)} colorCode={props.colorCode} docID={props.firebaseID} assignmentName={props.assignmentName} />
+}
+</View>
       </View>
     );
 }

@@ -13,6 +13,7 @@ import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseCo
 import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
 import SelectGradeScreen from "./app/screens/addCoursesScreens/SelectGradeScreen";
+import EditAssignmentsScreen from "./app/screens/EditAssignmentsScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -79,6 +80,15 @@ const assignmentObj = {
   grade: null, // String.
 };
 
+const openMainModal = {
+  bool: false
+}
+
+const currentlyEditing = {
+  docID: null
+}
+
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
@@ -95,11 +105,11 @@ function App() {
           component={DummyPageScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen
-          name="Overview"
+        {/* <Stack.Screen
+          name="OverviewPage"
           component={OverviewPageScreen}
           options={{ headerShown: false }}
-        />
+        /> */}
         <Stack.Screen
           name="GradeCalculator"
           component={GradeCalcPageScreen}
@@ -136,10 +146,15 @@ function App() {
           component={HomePageScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="EditAssignments"
+          component={EditAssignmentsScreen}
+          options={{ headerShown: false, animation: "slide_from_bottom"}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, openMainModal };
