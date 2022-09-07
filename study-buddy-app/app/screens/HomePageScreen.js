@@ -13,9 +13,11 @@ const HomePageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Study Buddy</Text>  
-      <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text>
+      <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back!{'\n'}</Text>
+      See the 'Overview' section to view all your logged assessments.</Text>
       <CarouselFunctionality data={data}/>
     </View>
+
     
       
   );
@@ -42,10 +44,8 @@ const styles = StyleSheet.create({
       textAlign: "center",
     },
     welcomebox: {
-     // fontWeight: "bold",
       fontSize: 25,
       fontFamily: "sans-serif-condensed",
-      //lineHeight: 60,
       marginTop: 50,
       borderWidth: 5,
       padding: 20,
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default HomePageScreen
+export default HomePageScreen;

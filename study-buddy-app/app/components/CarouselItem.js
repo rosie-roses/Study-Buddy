@@ -7,18 +7,20 @@ const CarouselItem = ({ item }) => {
   return (
     <View
       style={{
-        borderWidth: 1,
-        padding: 20,
+        borderWidth: 3,
+        height: 175,
         borderRadius: 20,
         alignItems: 'center',
         backgroundColor: 'white',
+        justifyContent: "center",
+        
       }}>
       {/* <Image source={{uri: item.url}} style={{width: 100, height: 100}} /> */}
-      <Text style={{marginVertical: 10, fontSize: 20, fontWeight: 'bold'}}>
+      <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>
         {item.name}
       </Text>
     </View>
   );
 }
 
-export default CarouselItem
+export default CarouselItem;
