@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         height: 105,
         paddingTop: 10,
-        backgroundColor: "#ffffff"
+        backgroundColor: "#ffffff",
     },
     labelStyle: {
         flex: 1,
