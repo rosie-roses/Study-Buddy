@@ -5,22 +5,30 @@ const { width, height } = Dimensions.get('window')
 
 const CarouselItem = ({ item }) => {
   return (
-    <View
-      style={{
-        borderWidth: 3,
-        height: 175,
-        borderRadius: 20,
-        alignItems: 'center',
-        backgroundColor: 'white',
-        justifyContent: "center",
-        
-      }}>
-      {/* <Image source={{uri: item.url}} style={{width: 100, height: 100}} /> */}
-      <Text style={{fontSize: 20, fontWeight: 'bold', textAlign: 'center'}}>
+    <View style={styles.itemContainer}>
+      <Text style={styles.itemText}>
         {item.name}
       </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  itemContainer: {
+    height: 175,
+    alignItems: 'center',
+    backgroundColor: '#8639d4',
+    justifyContent: "center",
+    borderRadius: 20
+  },
+  itemText: {
+    padding: 15,
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center'
+  },
+
+});
 
 export default CarouselItem;
