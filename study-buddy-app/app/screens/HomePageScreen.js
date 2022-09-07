@@ -6,33 +6,29 @@ import {
   StyleSheet,
   Dimensions,
 } from "react-native";
-// import { NavItem } from "react-bootstrap";
 import CarouselFunctionality from "../components/CarouselFunctionality";
 import { data } from "../assets/data";
-import CarouselItem from "../components/CarouselItem";
-
-const { width, height } = Dimensions.get('window');
 
 const HomePageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Study Buddy</Text> 
+      <Text style={styles.title}>Study Buddy</Text>  
       <Text style={styles.welcomebox}><Text style={styles.bolded}>Welcome back, Joe!</Text>              Your engineering project is due in 6 days. Complete 3 more hours of study to meet your goal.</Text>
-    
       <CarouselFunctionality data={data}/>
     </View>
+    
+      
   );
 }
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
-      alignItems: "center",
-      backgroundColor: "white",
       padding: 40,
+      backgroundColor: "white",
       justifyContent: "flex-start",
-  
+      flex: 1,
     },
+
     title: {
       fontWeight: "bold",
       fontSize: 40,
