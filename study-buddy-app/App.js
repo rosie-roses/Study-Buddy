@@ -14,6 +14,7 @@ import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
 import SelectGradeScreen from "./app/screens/addCoursesScreens/SelectGradeScreen";
 
+
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
 import * as firebase from "firebase";
