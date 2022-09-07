@@ -35,6 +35,7 @@ const printAssignments = () => {
         return (
           <Assignment
             key={assignment.uniqueKey} // Avoids react unique key error.
+            firebaseID={assignment.uniqueKey}
             assignmentName={assignment.assignmentName}
             colorCode={assignment.colorCode}
             weight={assignment.weight}
