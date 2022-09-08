@@ -99,6 +99,9 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
+const disableSwitchScreen = {
+  boolean: false
+}
 
 const Stack = createNativeStackNavigator(); // Navigation.
 
@@ -163,4 +166,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, disableSwitchScreen };
