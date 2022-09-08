@@ -99,7 +99,6 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
-
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
