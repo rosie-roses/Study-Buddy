@@ -13,11 +13,14 @@ import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseCo
 import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
 import SelectGradeScreen from "./app/screens/addCoursesScreens/SelectGradeScreen";
+import { doc, setDoc } from "firebase/firestore"; 
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
 import * as firebase from "firebase";
 import "firebase/firestore";
+import LoginScreen from "./app/screens/LoginScreen";
+import SignUpScreen from "./app/screens/SignUpScreen";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDViGClOz4lL3qXicfhlcxjuYqpcw5w8mo",
@@ -68,9 +71,35 @@ function addStudyTipToFirebase(studytipstring) {
     });
 }
 
-const allAssignments = [];
+function addUserToFirebase(username, email, password){
+   console.log("hello");
+ db.collection("UserInformation")
+.add({
+  username:username,
+  email: email,
+  password: password,
+})
+.then((docRef)=> {
+  console.log("Added the email and password: ", docRef.id);
+  console.log("hello");
+  
+  console.log("hiiii");
+      reportID = docRef.id;
+})
+.catch((error) => {
+  console.error("Error adding email and password to firebase: ", error);
+});
+}
 
+const allAssignments = [];
 const db = firebase.firestore();
+
+// try {
+//   firebase.auth().createUserWithEmailAndPassword(username, email, password);
+//   console.log("user created");
+// } catch (error) {
+//   console.log(error.toString(error));
+// }
 
 const assignmentObj = {
   assignmentName: null, // String.
@@ -79,12 +108,18 @@ const assignmentObj = {
   grade: null, // String.
 };
 
+const userObj = {
+  email: null,
+  password: null,
+  username: null,
+};
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen
           name="Main"
           component={MainPageScreen}
@@ -136,10 +171,20 @@ function App() {
           component={HomePageScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUpScreen"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, addUserToFirebase,userObj };
