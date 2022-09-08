@@ -1,23 +1,19 @@
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
 import Modal from "react-native-modal";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { currentlyEditing, refreshCurrentlyEditing } from "../../App";
-import DeleteModal from "./DeleteModal";
+import { db } from "../../App";
 
-const MainModal = ({
-  open,
-  onClose,
-  colorCode,
-  docID,
-  assignmentName,
-  assignmentColorCode,
-  assignmentGrade,
-  assignmentWeight,
-}) => {
-  const navigation = useNavigation();
-  const [openDelete, setOpenDelete] = React.useState(false);
+const DeleteModal = ({ openDelete, onCloseDelete, colorCode, assignmentName, docID }) => {
+
+    const deletAssignment = (id) => {
+        db.collection("assignments").doc(id).delete().then(() => {
+            console.log("Document successfully deleted!");
+        }).catch((error) => {
+            console.error("Error removing document: ", error);
+        });
+    }
+
   return (
     <View>
       <Modal
@@ -26,15 +22,15 @@ const MainModal = ({
         animationOut={"slideInDown"}
         animationInTiming={750} // or any other
         animationOutTiming={1000}
-        isVisible={open}
-        onBackButtonPress={onClose}
-        onBackdropPress={onClose}
+        isVisible={openDelete}
+        onBackButtonPress={onCloseDelete}
+        onBackdropPress={onCloseDelete}
         backdropOpacity={0.6}
         hideModalContentWhileAnimating={true}
         statusBarTranslucent
       >
         <View style={styles.modalBox}>
-          <Text style={styles.text}>Selected Assignment:</Text>
+          <Text style={styles.text}>Delete Assignment:</Text>
           <View style={styles.selectedCourse}>
             <View
               style={[styles.circle, { backgroundColor: colorCode }]}
@@ -42,30 +38,8 @@ const MainModal = ({
             <Text style={styles.assignmentName}>{assignmentName}</Text>
           </View>
           <View style={styles.buttonGroup}>
-            <Pressable
-              onPress={() => {
-                onClose();
-                refreshCurrentlyEditing();
-                currentlyEditing.docID = docID;
-                currentlyEditing.assignmentName = assignmentName;
-                currentlyEditing.colorCode = assignmentColorCode;
-                currentlyEditing.weight = assignmentWeight;
-                currentlyEditing.grade = assignmentGrade;
-                navigation.navigate("EditAssignments");
-              }}
-            >
-              <View style={styles.button}>
-                <MaterialCommunityIcons
-                  name="pencil-outline"
-                  color={"#444"}
-                  style={{ marginBottom: 5 }}
-                  size={25}
-                />
-                <Text>Edit</Text>
-              </View>
-            </Pressable>
             <Pressable onPress={() => {
-              setOpenDelete(true);
+                deletAssignment(docID);
             }}>
               <View style={styles.button}>
                 <MaterialCommunityIcons
@@ -80,15 +54,6 @@ const MainModal = ({
           </View>
         </View>
       </Modal>
-        {openDelete && (
-          <DeleteModal
-            openDelete={openDelete}
-            onCloseDelete={() => setOpenDelete(false)}
-            assignmentName={assignmentName}
-            colorCode={colorCode}
-            docID={docID}
-          />
-        )}
     </View>
   );
 };
@@ -147,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MainModal;
+export default DeleteModal;

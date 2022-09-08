@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { close } from "../../App";
 import MainModal from "./MainModal";
 /**
  * Displays each assignment stored in the database as a Assignment component
@@ -8,7 +7,7 @@ import MainModal from "./MainModal";
  */
 
 const Assignment = (props) => {
-  const [open, setOpen] = React.useState(close);
+  const [open, setOpen] = React.useState(false);
   return (
     <View>
       <Pressable
