@@ -13,6 +13,8 @@ import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseCo
 import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
 import SelectGradeScreen from "./app/screens/addCoursesScreens/SelectGradeScreen";
+import EditAssignmentsScreen from "./app/screens/EditAssignmentsScreen";
+
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
@@ -37,13 +39,14 @@ if (!firebase.apps.length) {
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
 
-function addToFirebase(name, colorCode, weight, grade) {
+function addToFirebase(name, courseCode, colorCode, weight, grade) {
   db.collection("assignments")
     .add({
       assignmentName: name,
       colorCode: colorCode,
+      courseCode: courseCode,
       weight: weight,
-      grade: grade,
+      grade: grade
     })
     .then((docRef) => {
       console.log("Added assignment object with ID: ", docRef.id);
@@ -74,10 +77,31 @@ const db = firebase.firestore();
 
 const assignmentObj = {
   assignmentName: null, // String.
+  courseCode: null, // String
   colorCode: null, // String.
   weight: null, // Number.
-  grade: null, // String.
+  grade: null // String
 };
+
+const currentlyEditing = {
+  docID: null,
+  assignmentName: null,
+  colorCode: null,
+  grade: null,
+  weight: NaN
+}
+
+function refreshCurrentlyEditing() {
+  currentlyEditing.docID = null;
+  currentlyEditing.assignmentName = null;
+  currentlyEditing.colorCode = null;
+  currentlyEditing.grade = null,
+  currentlyEditing.weight = NaN
+}
+
+const disableSwitchScreen = {
+  boolean: false
+}
 
 const Stack = createNativeStackNavigator(); // Navigation.
 
@@ -93,11 +117,6 @@ function App() {
         <Stack.Screen
           name="Dummy"
           component={DummyPageScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Overview"
-          component={OverviewPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen
@@ -136,10 +155,15 @@ function App() {
           component={HomePageScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="EditAssignments"
+          component={EditAssignmentsScreen}
+          options={{ headerShown: false, animation: "slide_from_bottom"}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, disableSwitchScreen };

@@ -17,25 +17,27 @@ import SelectDropdown from "react-native-select-dropdown";
 import * as Icon from "react-native-feather";
 import { addToFirebase, assignmentObj } from "../../../App";
 
+const gradesList = [
+  { "A+ (90% - 100%)": "A+" },
+  { "A (85% - 89%)": "A" },
+  { "A- (80% - 84%)": "A-" },
+  { "B+ (75% - 79%)": "B+" },
+  { "B (70% - 74%)": "B" },
+  { "B- (65% - 69%)": "B-" },
+  { "C+ (60% - 64%)": "C+" },
+  { "C (55% - 59%)": "C" },
+  { "C- (50% - 54%)": "C-" },
+  { "D (40% - 49%)": "D" },
+  { "E  (0% - 39%)": "E" },
+];
+
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
 
   const [text, onChangeText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
   // console.log("weight selected: ", assignmentObj.weight);
-  const gradesList = [
-    { "A+ (90% - 100%)": "A+" },
-    { "A (85% - 89%)": "A" },
-    { "A- (80% - 84%)": "A-" },
-    { "B+ (75% - 79%)": "B+" },
-    { "B (70% - 74%)": "B" },
-    { "B- (65% - 69%)": "B-" },
-    { "C+ (60% - 64%)": "C+" },
-    { "C (55% - 59%)": "C" },
-    { "C- (50% - 54%)": "C-" },
-    { "D (40% - 49%)": "D" },
-    { "E  (0% - 39%)": "E" },
-  ];
+
   const gradeKeys = [];
   gradesList.map((item) => {
     let keys = Object.keys(item);
@@ -48,51 +50,7 @@ const SelectGradeScreen = (props) => {
     if (selection === "") {
       // User didn't use drop down
       let number = parseFloat(text);
-      if (number >= 90 && number <= 100) {
-        // A+
-        grade = "A+";
-        assignmentObj.grade = grade;
-      } else if (number >= 85 && number <= 89) {
-        // A
-        grade = "A";
-        assignmentObj.grade = grade;
-      } else if (number >= 80 && number <= 84) {
-        // A-
-        grade = "A-";
-        assignmentObj.grade = grade;
-      } else if (number >= 75 && number <= 79) {
-        // B+
-        grade = "B+";
-        assignmentObj.grade = grade;
-      } else if (number >= 70 && number <= 74) {
-        // B
-        grade = "B";
-        assignmentObj.grade = grade;
-      } else if (number >= 65 && number <= 69) {
-        // B-
-        grade = "B-";
-        assignmentObj.grade = grade;
-      } else if (number >= 60 && number <= 64) {
-        // C+
-        grade = "C+";
-        assignmentObj.grade = grade;
-      } else if (number >= 55 && number <= 59) {
-        // C
-        grade = "C";
-        assignmentObj.grade = grade;
-      } else if (number >= 50 && number <= 54) {
-        // C-
-        grade = "C-";
-        assignmentObj.grade = grade;
-      } else if (number >= 40 && number <= 49) {
-        // D
-        grade = "D";
-        assignmentObj.grade = grade;
-      } else if (number >= 0 && number <= 39) {
-        // E
-        grade = "E";
-        assignmentObj.grade = grade;
-      }
+      assignmentObj.grade = number;
     } else if (text === "") {
       // User didn't use text input
       let index = gradeKeys.indexOf(key);
@@ -103,7 +61,6 @@ const SelectGradeScreen = (props) => {
     if (text === "" && selection === "") {
       assignmentObj.grade = null;
     }
-    // console.log("Grade chosen: ", assignmentObj.grade);
   };
 
   return (
@@ -124,7 +81,6 @@ const SelectGradeScreen = (props) => {
           keyboardType="numeric"
           placeholder="75%"
           placeholderTextColor="#4f4f4f"
-          maxLength={7}
         />
       </SafeAreaView>
       <SelectDropdown
@@ -170,11 +126,12 @@ const SelectGradeScreen = (props) => {
             // Should be making the assignment object here.
             console.log(
               "Assignment object => name:" + assignmentObj.assignmentName,
+              ", course code: " + assignmentObj.courseCode,
               ", colour code: " + assignmentObj.colorCode,
               ", weight: " + assignmentObj.weight,
-              ", grade: " + assignmentObj.grade
+              ", grade: " + assignmentObj.grade,
             );
-            addToFirebase(assignmentObj.assignmentName, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
+            addToFirebase(assignmentObj.assignmentName, assignmentObj.courseCode, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
             navigation.navigate("AssessmentCreatedScreen");
           }}
         >
@@ -300,3 +257,4 @@ const styles = StyleSheet.create({
 });
 
 export default SelectGradeScreen;
+export {gradesList };
