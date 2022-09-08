@@ -21,6 +21,7 @@ const SignUpScreen = (props) => {
      
 return (
 <View style={styles.container}>
+<Text style={styles.title}>Welcome To Study Budy</Text>
 <Image style={styles.image} source={require("../assets/official_logo.png")} />
 
     <StatusBar style="auto" />
@@ -63,6 +64,7 @@ return (
         >
           <Text style={styles.loginText}>REGISTER</Text>
         </Pressable>
+        
 
 </View>
 
@@ -77,17 +79,26 @@ const styles = StyleSheet.create({
         padding: 40,
         justifyContent: "flex-start",
       },
+      title: {
+        fontWeight: "bold",
+        fontSize: 32,
+        fontFamily: "sans-serif-condensed",
+        letterSpacing: 1,
+        textAlign: "center",
+        marginTop: 40,
+        lineHeight: 40,
+      },
     inputView: {
-        backgroundColor: "#FFC0CB",
-        borderRadius: 30,
+        backgroundColor: "#8639d4",
+        borderRadius: 5,
         width: "70%",
         height: 40,
         alignItems: "center",
-        marginBottom: 50,
+        marginBottom: 20,
       },
       
-      TextInput: {
-        height: 50,
+    TextInput: {
+    height: 50,
     flex: 1,
     padding: 10,
     marginLeft: 20,
@@ -95,12 +106,12 @@ const styles = StyleSheet.create({
 
       loginBtn:{
    width:"80%",
-   borderRadius:25,
+   borderRadius:5,
    height:50,
    alignItems:"center",
    justifyContent:"center",
-    marginTop:40,
-   backgroundColor:"#FF1493",
+    marginTop:30,
+   backgroundColor:"#8639d4",
  },
  signupbtn:{
     width:"80%",
@@ -108,14 +119,14 @@ const styles = StyleSheet.create({
     height:50,
     alignItems:"center",
     justifyContent:"center",
-     marginTop:40,
-    backgroundColor:"#FF1493",
+     marginTop:30,
+    backgroundColor:"#8639d4",
  },
  image: {
     marginBottom: 40,
-    height:150,
-    width:150,
-    marginTop: 100,
+    height:175,
+    width:175,
+    marginTop: 50,
   },
 });
 
