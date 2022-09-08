@@ -27,10 +27,7 @@ const InputWeightScreen = (props) => {
         keyboardType="numeric"
         onChangeText={onChangeText}
         value={text}
-        onSubmitEditing={() => {
-          // Store user input text to App.
-          assignmentObj.weight = parseInt(text); // Will be NaN if user didn't input anything.
-        }}
+        
       />
       <View style={styles.buttonContainer}>
         <Pressable
@@ -45,6 +42,7 @@ const InputWeightScreen = (props) => {
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
+            assignmentObj.weight = parseInt(text); // Will be NaN if user didn't input anything.
             navigation.navigate("SelectGrade");
           }}
         >

@@ -49,51 +49,8 @@ const SelectGradeScreen = (props) => {
     let grade = "";
     if (selection === "") {
       // User didn't use drop down
-      if (number >= 90 && number <= 100) {
-        // A+
-        grade = "A+";
-        assignmentObj.grade = grade;
-      } else if (number >= 85 && number <= 89) {
-        // A
-        grade = "A";
-        assignmentObj.grade = grade;
-      } else if (number >= 80 && number <= 84) {
-        // A-
-        grade = "A-";
-        assignmentObj.grade = grade;
-      } else if (number >= 75 && number <= 79) {
-        // B+
-        grade = "B+";
-        assignmentObj.grade = grade;
-      } else if (number >= 70 && number <= 74) {
-        // B
-        grade = "B";
-        assignmentObj.grade = grade;
-      } else if (number >= 65 && number <= 69) {
-        // B-
-        grade = "B-";
-        assignmentObj.grade = grade;
-      } else if (number >= 60 && number <= 64) {
-        // C+
-        grade = "C+";
-        assignmentObj.grade = grade;
-      } else if (number >= 55 && number <= 59) {
-        // C
-        grade = "C";
-        assignmentObj.grade = grade;
-      } else if (number >= 50 && number <= 54) {
-        // C-
-        grade = "C-";
-        assignmentObj.grade = grade;
-      } else if (number >= 40 && number <= 49) {
-        // D
-        grade = "D";
-        assignmentObj.grade = grade;
-      } else if (number >= 0 && number <= 39) {
-        // E
-        grade = "E";
-        assignmentObj.grade = grade;
-      }
+      let number = parseFloat(text);
+      assignmentObj.grade = number;
     } else if (text === "") {
       // User didn't use text input
       let index = gradeKeys.indexOf(key);
@@ -104,7 +61,6 @@ const SelectGradeScreen = (props) => {
     if (text === "" && selection === "") {
       assignmentObj.grade = null;
     }
-    // console.log("Grade chosen: ", assignmentObj.grade);
   };
 
   return (
@@ -170,11 +126,12 @@ const SelectGradeScreen = (props) => {
             // Should be making the assignment object here.
             console.log(
               "Assignment object => name:" + assignmentObj.assignmentName,
+              ", course code: " + assignmentObj.courseCode,
               ", colour code: " + assignmentObj.colorCode,
               ", weight: " + assignmentObj.weight,
-              ", grade: " + assignmentObj.grade
+              ", grade: " + assignmentObj.grade,
             );
-            addToFirebase(assignmentObj.assignmentName, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
+            addToFirebase(assignmentObj.assignmentName, assignmentObj.courseCode, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
             navigation.navigate("AssessmentCreatedScreen");
           }}
         >

@@ -2,6 +2,7 @@ import React from "react";
 import PickerComponent from "../../components/PickerComponent";
 import { View, Text, StyleSheet, SafeAreaView, TextInput, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { assignmentObj } from "../../../App";
 
 const ChooseColourCodeScreen = (props) => {
   const navigation = useNavigation();
@@ -26,6 +27,7 @@ const ChooseColourCodeScreen = (props) => {
       <Pressable
         style={styles.doneButton}
         onPress={() => {
+          assignmentObj.courseCode = text;
           navigation.navigate("Add Courses");
         }}
       >
