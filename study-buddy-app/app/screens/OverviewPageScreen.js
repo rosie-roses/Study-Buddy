@@ -1,16 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, SafeAreaView, ScrollView, StatusBar } from "react-native";
 import printAssignments from "../helperFunctions/PrintAssignments";
 
 const OverviewPageScreen = (props) => {
-  // const [allAssignments, setAllAssignments] = React.useState([]);
-
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>We are in the overview page.</Text>
+    <SafeAreaView style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+      <Text style={styles.title}>Assessments</Text>
       {/* Display all assignments from database on screen */}
       <View>{printAssignments()}</View> 
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -20,7 +20,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: "white",
-    padding: 40
+    paddingTop: StatusBar.currentHeight,
+  },
+  scrollView: {
+    padding: 40,
+    paddingTop: 20
+  },
+  title: {
+    fontWeight: "bold",
+    fontSize: 32,
+    fontFamily: "sans-serif-condensed",
+    letterSpacing: 1,
+    textAlign: "center",
+    marginTop: 20,
+    marginBottom: 30,
+    lineHeight: 40,
   },
   text: {
     fontSize: 18,
