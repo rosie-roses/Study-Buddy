@@ -83,12 +83,20 @@ const assignmentObj = {
   grade: null // String
 };
 
-const openMainModal = {
-  bool: false
+const currentlyEditing = {
+  docID: null,
+  assignmentName: null,
+  colorCode: null,
+  grade: null,
+  weight: NaN
 }
 
-const currentlyEditing = {
-  docID: null
+function refreshCurrentlyEditing() {
+  currentlyEditing.docID = null;
+  currentlyEditing.assignmentName = null;
+  currentlyEditing.colorCode = null;
+  currentlyEditing.grade = null,
+  currentlyEditing.weight = NaN
 }
 
 
@@ -108,11 +116,6 @@ function App() {
           component={DummyPageScreen}
           options={{ headerShown: false }}
         />
-        {/* <Stack.Screen
-          name="OverviewPage"
-          component={OverviewPageScreen}
-          options={{ headerShown: false }}
-        /> */}
         <Stack.Screen
           name="GradeCalculator"
           component={GradeCalcPageScreen}
@@ -160,4 +163,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, openMainModal };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing };
