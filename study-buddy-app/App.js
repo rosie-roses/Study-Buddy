@@ -73,35 +73,25 @@ function addStudyTipToFirebase(studytipstring) {
     });
 }
 
-function addUserToFirebase(username, email, password){
-   console.log("hello");
- db.collection("UserInformation")
-.add({
-  username:username,
-  email: email,
-  password: password,
-})
-.then((docRef)=> {
-  console.log("Added the email and password: ", docRef.id);
-  console.log("hello");
-  
-  console.log("hiiii");
+function addUserToFirebase(username, email, password) {
+  db.collection("UserInformation")
+    .add({
+      username: username,
+      email: email,
+      password: password
+    })
+    .then((docRef) => {
+      console.log("Added user information object with ID: ", docRef.id);
       reportID = docRef.id;
-})
-.catch((error) => {
-  console.error("Error adding email and password to firebase: ", error);
-});
+    })
+    .catch((error) => {
+      console.error("Error adding user information to firebase: ", error);
+    });
 }
+
 
 const allAssignments = [];
 const db = firebase.firestore();
-
-// try {
-//   firebase.auth().createUserWithEmailAndPassword(username, email, password);
-//   console.log("user created");
-// } catch (error) {
-//   console.log(error.toString(error));
-// }
 
 const assignmentObj = {
   assignmentName: null, // String.
@@ -117,6 +107,12 @@ const currentlyEditing = {
   colorCode: null,
   grade: null,
   weight: NaN
+}
+
+const userObj = {
+  username: null,
+  email: null,
+  password: null
 }
 
 function refreshCurrentlyEditing() {
@@ -185,10 +181,15 @@ function App() {
           component={EditAssignmentsScreen}
           options={{ headerShown: false, animation: "slide_from_bottom"}}
         />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj };

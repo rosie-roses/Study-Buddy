@@ -11,13 +11,33 @@ import {
   Button,
   TouchableOpacity,
   Pressable,
+  Alert
 } from "react-native";
 import { db, userObj } from "../../App";
 
 const LoginScreen = (props) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+  const [text, onChangeText] = React.useState("");
   const navigation = useNavigation();
+
+  const checkemail = (email) =>{
+    db.collection('UserInformation')
+            .where('email', '==', email)
+            .get()
+            .then(function (querySnapshot) {
+                if (!querySnapshot.empty) {
+                    querySnapshot.forEach(function (doc) {
+                        console.log("The email is present in an object in the database.");
+                        // take user to home screen
+                        navigation.navigate("HomePageScreen");
+                    });
+                  } else {
+                    console.log("Error!");
+                    Alert.alert("Email has not been registered!");
+                  }
+                });
+            };
 
   return (
     <View style={styles.container}>
@@ -30,43 +50,28 @@ const LoginScreen = (props) => {
       <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
-          placeholder="Email."
+          placeholder="Email:"
           placeholderTextColor="#003f5c"
-          onChangeText={(email) => setEmail(email)}
+          onChangeText={onChangeText}
+          value={text}
+          keyboardType="default"
+          
         />
       </View>
-      <View style={styles.inputView}>
+      {/* <View style={styles.inputView}>
         <TextInput
           style={styles.TextInput}
           placeholder="Password."
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={onChangeText}
         />
-      </View>
+      </View> */}
       <Pressable
         style={styles.loginBtn}
         onPress={() => {
-            console.log("im here3")
-          var user = db
-          
-            .collection("UserInformation")
-            .where('email', '==', email)
-            .get()
-            .then(function (querySnapshot) {
-              querySnapshot.forEach(function (doc) {
-                console.log("im here3")
-                if (!querySnapshot.empty) {
-                    console.log("im here2");
-                    console.log(doc.id, " => ", doc.data());
-                }
-                else{
-                    console.log("im here");
-                    alert("wrong email")
-                }
-              });
-            });
-          navigation.navigate("HomePageScreen");
+            checkemail(text)
+            userObj.email = text;
         }}
         
       >
