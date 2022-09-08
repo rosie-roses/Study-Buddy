@@ -87,7 +87,7 @@ const EditAssignmentsScreen = () => {
           placeholderTextColor="#4f4f4f"
         />
       </SafeAreaView>
-      <Text style={styles.label}>Grade recieved: </Text>
+      <Text style={styles.label}>Assessment Grade: </Text>
       <SelectDropdown
         data={gradeKeys}
         onSelect={(selectedItem, index) => {
@@ -117,6 +117,8 @@ const EditAssignmentsScreen = () => {
         rowStyle={styles.dropdownRow}
         rowTextStyle={styles.dropdownRowText}
       />
+      <View style={styles.buttonStyleContainer}>
+      {/* Confirm changes button */}
       <Pressable
         style={styles.completeButton}
         onPress={() => {
@@ -142,8 +144,18 @@ const EditAssignmentsScreen = () => {
           navigation.navigate("Overview");
         }}
       >
-        <Text style={styles.completeButtonText}>Finshed editing</Text>
+        <Text style={styles.buttonText}>Confirm Changes</Text>
       </Pressable>
+      {/* Cancel changes button */}
+      <Pressable
+        style={styles.cancelButton}
+        onPress={() => {
+          navigation.navigate("Overview");
+        }}
+      >
+        <Text style={styles.buttonText}>Cancel</Text>
+      </Pressable>
+      </View>
     </View>
   );
 };
@@ -213,13 +225,15 @@ const styles = StyleSheet.create({
   },
   completeButton: {
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#8639d4",
     marginTop: 100,
+    marginRight: 15,
   },
-  completeButtonText: {
+  buttonText: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: "bold",
@@ -227,5 +241,18 @@ const styles = StyleSheet.create({
     color: "white",
     textTransform: "uppercase",
   },
+  cancelButton: {
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    flexDirection: 'row',
+    borderRadius: 5,
+    elevation: 3,
+    backgroundColor: "#f71111",
+    marginTop: 100,
+    marginLeft: 15,
+  },
+  buttonStyleContainer: {
+    flexDirection: 'row',
+  }
 });
 export default EditAssignmentsScreen;
