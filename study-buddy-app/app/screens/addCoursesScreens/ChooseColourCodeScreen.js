@@ -1,5 +1,6 @@
 import React from "react";
 import PickerComponent from "../../components/PickerComponent";
+import Icon from "react-native-vector-icons/Ionicons";
 import {
   View,
   Text,
@@ -34,7 +35,17 @@ const ChooseColourCodeScreen = (props) => {
   };
 
   return (
+    
     <View style={styles.container}>
+      <View style={styles.positionClose}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("Add Courses");
+          }}
+        >
+          <Icon name="close-outline" color={"#666666"} size={50} />
+        </Pressable>
+      </View>
       <Text style={styles.title}>Choose a new course name and colour: </Text>
       <Text style={styles.text}>Select course name: </Text>
       <SafeAreaView>
@@ -70,6 +81,12 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     backgroundColor: "white",
     padding: 40,
+  },
+  positionClose: {
+    alignSelf: "flex-start",
+    width: 50,
+    marginTop: 20,
+    marginLeft: -10,
   },
   title: {
     fontWeight: "bold",
