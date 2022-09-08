@@ -39,13 +39,14 @@ if (!firebase.apps.length) {
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
 
-function addToFirebase(name, colorCode, weight, grade) {
+function addToFirebase(name, courseCode, colorCode, weight, grade) {
   db.collection("assignments")
     .add({
       assignmentName: name,
       colorCode: colorCode,
+      courseCode: courseCode,
       weight: weight,
-      grade: grade,
+      grade: grade
     })
     .then((docRef) => {
       console.log("Added assignment object with ID: ", docRef.id);
@@ -76,9 +77,10 @@ const db = firebase.firestore();
 
 const assignmentObj = {
   assignmentName: null, // String.
+  courseCode: null, // String
   colorCode: null, // String.
   weight: null, // Number.
-  grade: null, // String.
+  grade: null // String
 };
 
 const openMainModal = {
