@@ -25,9 +25,10 @@ const ChooseColourCodeScreen = (props) => {
       .then(function (querySnapshot) {
         if (!querySnapshot.empty) {
           querySnapshot.forEach(function (doc) {
-            disableSwitchScreen.boolean = true;
             Alert.alert("Error: Course code already exists!");
           });
+        } else {
+          navigation.navigate("Add Courses");
         }
       });
   };
@@ -54,10 +55,6 @@ const ChooseColourCodeScreen = (props) => {
         onPress={() => {
           checkCourseCodeFields(text);
           assignmentObj.courseCode = text;
-          console.log("boolean: ", disableSwitchScreen.boolean);
-          if (disableSwitchScreen.boolean === false) { // Only can switch screens if they added a non-existing courseCode.
-            navigation.navigate("Add Courses");
-          }
         }}
       >
         <Text style={styles.doneButtonText}>done</Text>
