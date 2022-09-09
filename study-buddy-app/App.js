@@ -126,6 +126,10 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
+const storeCourseObject = [];
+
+var courseMap = new Map();
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
