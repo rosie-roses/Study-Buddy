@@ -1,3 +1,7 @@
+/**
+ * Login screen when the user launches the app. User must sign in with a registered email and password details.
+ */
+
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ActivityIndicator } from 'react-native';
 import { firebase, auth } from "../../App";
@@ -18,15 +22,17 @@ export default class LoginScreen extends Component {
     this.setState(state);
   }
   userLogin = () => {
-    if (this.state.email === '' && this.state.password === '') {
+    if (this.state.email === '' && this.state.password === '') { // if the user does not enter anything and tries to sign in, alert pops up
       Alert.alert('Please enter details to sign in!')
     } else {
       this.setState({
-        isLoading: false,
+        isLoading: false, // otherwise, if they enter anything, set loading animation to false
       })
+      // use Firebase authentication sign-in method 
       auth.signInWithEmailAndPassword(this.state.email, this.state.password).then((res) => {
         console.log(res)
         console.log('User logged-in successfully!')
+        // successful login - trigger loading animation before showing welcome pop screen
         this.setState({
           isLoading: true,
           email: '',
@@ -34,10 +40,11 @@ export default class LoginScreen extends Component {
         })
         this.props.navigation.navigate('Main');
       })
-        .catch(error => Alert.alert('Incorrect login details. Please try again.'))
+        .catch(error => Alert.alert('Incorrect login details. Please try again.')) // display alert box if user attempts to log in with incorrect credentials
     }
   }
   render() {
+    // Loading animation
     console.log(this.state.isLoading);
     if (this.state.isLoading) {
       return (

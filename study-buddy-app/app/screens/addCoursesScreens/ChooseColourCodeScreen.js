@@ -1,3 +1,6 @@
+/**
+ * When adding a new assessment, users have the option to choose a colour for their assessments/course
+ */
 import React from "react";
 import PickerComponent from "../../components/PickerComponent";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -17,27 +20,28 @@ const ChooseColourCodeScreen = (props) => {
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
 
-  // Go through all the course code fields of each assignment in the database
-
-  const checkCourseCodeFields = (courseCode) => {
+  // check if the user is trying to add a course that already exists in the database
+   const checkCourseCodeFields = (courseCode) => {
     db.collection("assignments")
       .where("courseCode", "==", courseCode)
       .get()
       .then(function (querySnapshot) {
+        // if the course code already exists in the database then display alert box
         if (!querySnapshot.empty) {
           querySnapshot.forEach(function (doc) {
             Alert.alert("Error: Course code already exists!");
           });
         } else {
+          // otherwise, the user is taken back to the Add Courses page 
           navigation.navigate("Add Courses");
         }
       });
   };
 
   return (
-    
     <View style={styles.container}>
       <View style={styles.positionClose}>
+        {/* If the user no longer wants to add a course or choose a colour, they can exit by pressing a close/exit button */}
         <Pressable
           onPress={() => {
             navigation.navigate("Add Courses");
@@ -46,6 +50,7 @@ const ChooseColourCodeScreen = (props) => {
           <Icon name="close-outline" color={"#666666"} size={50} />
         </Pressable>
       </View>
+      {/* Text input for user to enter the course name */}
       <Text style={styles.title}>Choose a new course name and colour: </Text>
       <Text style={styles.text}>Select course name: </Text>
       <SafeAreaView>
@@ -59,13 +64,15 @@ const ChooseColourCodeScreen = (props) => {
           maxLength={7}
         />
       </SafeAreaView>
+      {/* Color picker for assessment/course */}
       <Text style={styles.text}>Select course colour code: </Text>
       <PickerComponent />
+      {/* User has to confirm entered details by pressing 'done' button */}
       <Pressable
         style={styles.doneButton}
         onPress={() => {
-          checkCourseCodeFields(text);
-          assignmentObj.courseCode = text;
+          checkCourseCodeFields(text); // when 'done' button is pressed, check if the course code user entered is preexisting in database.
+          assignmentObj.courseCode = text; // user input is the assigned course code for assessment object being added to database.
         }}
       >
         <Text style={styles.doneButtonText}>done</Text>
