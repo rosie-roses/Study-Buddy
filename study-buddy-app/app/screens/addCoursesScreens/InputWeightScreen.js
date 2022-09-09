@@ -26,8 +26,8 @@ const InputWeightScreen = (props) => {
       {/* Text input field for user to enter the weight of the assessment */}
       <TextInput
         style={styles.input}
-        placeholder="15%"
-        placeholderTextColor="#4f4f4f"
+        placeholder="e.g. 15"
+        placeholderTextColor="#c9c9c9"
         keyboardType="numeric"
         onChangeText={onChangeText}
         value={text}

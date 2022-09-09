@@ -49,11 +49,12 @@ const AddCoursesPageScreen = (props) => {
     //Features include text input, pressable buttons and disabled button.
     <View style={styles.container}>
         <Text style={styles.title}>1/4</Text>
-        <Text style={styles.title}>Give Your Assessment a name....</Text>
+        <Text style={styles.title}>Give your assessment a name...</Text>
 
         <TextInput
           style={styles.input}
-          placeholder="Assessment Name"
+          placeholder="e.g. Engineering Essay"
+          placeholderTextColor="#c9c9c9"
           keyboardType="default"
           onChangeText={onChangeText}
           value={text}
