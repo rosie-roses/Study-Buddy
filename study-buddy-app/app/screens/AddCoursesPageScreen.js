@@ -227,12 +227,13 @@ const styles = StyleSheet.create({
     fontFamily: "notoserif",
     letterSpacing: 1,
     fontSize: 16,
+    width: "100%"
   },
   dropdownButton: {
     height: 50,
     backgroundColor: "#2E294E",
     borderRadius: 5,
-    marginTop: 30,
+    marginTop: 20,
     width: "100%",
   },
   dropdownButtonText: {
