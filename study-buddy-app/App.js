@@ -18,7 +18,6 @@ import EditAssignmentsScreen from "./app/screens/EditAssignmentsScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
-import { initializeApp } from "firebase/app";
 import { getFireStore } from "firebase/firestore";
 import "firebase/firestore";
 import LoginScreen from "./app/screens/LoginScreen";
@@ -38,8 +37,9 @@ const firebaseConfig = {
 
 // const app = initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
+//const auth = firebase.auth();
 
+const auth = firebase.auth();
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
 
