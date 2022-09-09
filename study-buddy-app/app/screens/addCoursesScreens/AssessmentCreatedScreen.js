@@ -1,27 +1,31 @@
+/**
+ * Displays a success screen after the user has logged an assessment. 
+ */
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { assignmentObj } from "../../../App";
+
 
 const AssessmentCreatedScreen = (props) => {
     const navigation = useNavigation();
-    // console.log("grade selected: ", assignmentObj.grade);
   return (
     <View style={styles.container}>
       <View style={styles.positionClose}>
         <Pressable
           style={styles.backNextButton}
+          // User can be directed to home screen by pressing button  after the assessment is created.
           onPress={() => {
             navigation.navigate("Home");
           }}
         >
-          <Icon name="close-outline" color={"#666666"} size={50} />
+         
+          <Icon name="close-outline" color={"#666666"} size={50} />  {/* Close/exit icon */}
         </Pressable>
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>Assessment Created!</Text>
-        <Icon name="checkmark-circle-outline" color={"green"} size={200} />
+        <Icon name="checkmark-circle-outline" color={"green"} size={200} />  {/* Success/checkmark icon */}
         <Text style={styles.title2}>
           Please refer to the courses overview tab in the main menu to view the
           assignment you created.
@@ -46,7 +50,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 30,
     textAlign: "center",
-    // flex: 1,
     alignItems: "center",
 
     fontWeight: "bold",

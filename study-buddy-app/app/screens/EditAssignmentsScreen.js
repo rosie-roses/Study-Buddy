@@ -2,6 +2,7 @@ import React from "react";
 import {
   Pressable,
   SafeAreaView,
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -14,12 +15,14 @@ import * as Icon from "react-native-feather";
 import { gradesList } from "./addCoursesScreens/SelectGradeScreen";
 
 const EditAssignmentsScreen = () => {
+  //Declared to contain data for the contstants
   const navigation = useNavigation();
-
   const [nameText, onChangeNameText] = React.useState("");
+  const [gradeText, onChangeGradeText] = React.useState("");
   const [weightText, onchangeWeightText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
 
+  
   const gradeKeys = [];
   gradesList.map((item) => {
     let keys = Object.keys(item);
@@ -54,11 +57,15 @@ const EditAssignmentsScreen = () => {
   };
 
   return (
+    
     <View style={styles.container}>
       {/* just for now */}
       <Text style={styles.tile}>Edit: {currentlyEditing.assignmentName}</Text>
-      <Text style={styles.label}>Assignment Name: </Text>
-      <SafeAreaView>
+      <ScrollView>
+      <SafeAreaView style={styles.centering}>
+      <Text style={styles.label}>Assessment Name: </Text>
+      
+      
         <TextInput
           style={styles.input}
           onChangeText={onChangeNameText}
@@ -72,8 +79,8 @@ const EditAssignmentsScreen = () => {
           placeholderTextColor="#4f4f4f"
         />
       </SafeAreaView>
-      <Text style={styles.label}>Assignment Weight: </Text>
-      <SafeAreaView>
+      <SafeAreaView style={styles.centering}>
+      <Text style={styles.label}>Assessment Weight: </Text>
         <TextInput
           style={styles.input}
           onChangeText={onchangeWeightText}
@@ -87,7 +94,8 @@ const EditAssignmentsScreen = () => {
           placeholderTextColor="#4f4f4f"
         />
       </SafeAreaView>
-      <Text style={styles.label}>Assessment Grade: </Text>
+      <SafeAreaView style={styles.centering}>
+      <Text style={styles.label}>Assessment Grade (% or letter grade): </Text>
       <SelectDropdown
         data={gradeKeys}
         onSelect={(selectedItem, index) => {
@@ -117,6 +125,22 @@ const EditAssignmentsScreen = () => {
         rowStyle={styles.dropdownRow}
         rowTextStyle={styles.dropdownRowText}
       />
+      </SafeAreaView>
+      <SafeAreaView style={styles.centering}>
+        <TextInput
+          style={styles.gradeInput}
+          onChangeText={onChangeGradeText}
+          value={gradeText}
+          keyboardType="numeric"
+          placeholder={
+            currentlyEditing.grade === null
+              ? "e.g. 30"
+              : currentlyEditing.grade + "%"
+          }
+          placeholderTextColor="#4f4f4f"
+        />
+      </SafeAreaView>
+      </ScrollView>
       <View style={styles.buttonStyleContainer}>
       {/* Confirm changes button */}
       <Pressable
@@ -132,6 +156,8 @@ const EditAssignmentsScreen = () => {
             let index = gradeKeys.indexOf(selection);
             let grade = gradesList[index][selection];
             currentlyEditing.grade = grade;
+          } else if (gradeText !== "") {
+            currentlyEditing.grade = gradeText;
           }
           updateDb(
             currentlyEditing.docID,
@@ -144,7 +170,7 @@ const EditAssignmentsScreen = () => {
           navigation.navigate("Overview");
         }}
       >
-        <Text style={styles.buttonText}>Confirm Changes</Text>
+      <Text style={styles.buttonText}>Confirm Changes</Text>
       </Pressable>
       {/* Cancel changes button */}
       <Pressable
@@ -163,12 +189,18 @@ const EditAssignmentsScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     backgroundColor: "white",
-    alignItems: "center",
+    alignItems: 'center',
     padding: 20,
     paddingTop: 40,
+    
+  },
+  centering: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "white",
   },
   tile: {
     fontWeight: "bold",
@@ -189,6 +221,19 @@ const styles = StyleSheet.create({
     width: 200,
     marginTop: 20,
     marginBottom: 40,
+    borderWidth: 2,
+    padding: 10,
+    borderRadius: 5,
+    borderColor: "#666666",
+    textAlign: "center",
+    fontFamily: "notoserif",
+    letterSpacing: 1,
+    fontSize: 16,
+  },
+  gradeInput: {
+    height: 40,
+    width: 200,
+    marginTop: 20,
     borderWidth: 2,
     padding: 10,
     borderRadius: 5,
@@ -230,7 +275,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#8639d4",
-    marginTop: 100,
+    marginTop: 50,
     marginRight: 15,
   },
   buttonText: {
@@ -248,11 +293,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     elevation: 3,
     backgroundColor: "#f71111",
-    marginTop: 100,
+    marginTop: 50,
     marginLeft: 15,
   },
   buttonStyleContainer: {
     flexDirection: 'row',
-  }
+    marginTop: 0,
+  },
+
+
 });
 export default EditAssignmentsScreen;

@@ -1,3 +1,7 @@
+/**
+ * When adding a new assessment, users have the option to input the grade they received for the assessment
+ */
+
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -17,6 +21,7 @@ import SelectDropdown from "react-native-select-dropdown";
 import * as Icon from "react-native-feather";
 import { addToFirebase, assignmentObj } from "../../../App";
 
+// List for letter grade drop-down menu
 const gradesList = [
   { "A+ (90% - 100%)": "A+" },
   { "A (85% - 89%)": "A" },
@@ -33,11 +38,8 @@ const gradesList = [
 
 const SelectGradeScreen = (props) => {
   const navigation = useNavigation();
-
   const [text, onChangeText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
-  // console.log("weight selected: ", assignmentObj.weight);
-
   const gradeKeys = [];
   gradesList.map((item) => {
     let keys = Object.keys(item);
@@ -74,6 +76,7 @@ const SelectGradeScreen = (props) => {
         select the grade received from the dropdown menu.
       </Text>
       <SafeAreaView>
+        {/* Text input if user wants to enter a percentage score for their assessment grade */}
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
@@ -83,10 +86,10 @@ const SelectGradeScreen = (props) => {
           placeholderTextColor="#4f4f4f"
         />
       </SafeAreaView>
+      {/* Drop-down menu for letter grades */}
       <SelectDropdown
         data={gradeKeys}
         onSelect={(selectedItem, index) => {
-          // console.log(selectedItem, index);
           onChangeSelection(selectedItem);
         }}
         defaultButtonText={"Select grade"}
@@ -111,19 +114,21 @@ const SelectGradeScreen = (props) => {
         rowTextStyle={styles.dropdownRowText}
       />
       <View style={styles.buttonContainer}>
+        {/* 'Back' button which takes the user to the previous step for creating an assessment */}
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
-            navigation.navigate("InputWeightScreen");
+            navigation.navigate("InputWeightScreen"); // Screen for adding an assessment weight
           }}
         >
           <Text style={styles.backNextButtonText}>back</Text>
         </Pressable>
         <Pressable
+        /* 'Next' button which takes the user to successful assessment creation screen */
           style={styles.backNextButton}
           onPress={() => {
             setGrade(parseFloat(text), selection);
-            // Should be making the assignment object here.
+            // When button is pressed, assignment object is created and added to the database.
             console.log(
               "Assignment object => name:" + assignmentObj.assignmentName,
               ", course code: " + assignmentObj.courseCode,
@@ -132,16 +137,17 @@ const SelectGradeScreen = (props) => {
               ", grade: " + assignmentObj.grade,
             );
             addToFirebase(assignmentObj.assignmentName, assignmentObj.courseCode, assignmentObj.colorCode, assignmentObj.weight, assignmentObj.grade);
-            navigation.navigate("AssessmentCreatedScreen");
+            navigation.navigate("AssessmentCreatedScreen"); // take user to success assessment created screen
           }}
         >
           <Text style={styles.backNextButtonText}>next</Text>
         </Pressable>
       </View>
+      {/* user has option to skip entering a grade for their assessment.  */}
       <Pressable
         style={styles.skipButton}
         onPress={() => {
-          assignmentObj.grade = null;
+          assignmentObj.grade = null; // grade field is null for assessment object.
           navigation.navigate("AssessmentCreatedScreen");
         }}
       >
