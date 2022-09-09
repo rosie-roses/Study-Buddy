@@ -9,7 +9,6 @@ export default class SignUpScreen extends Component {
   constructor() {
     super();
     this.state = { 
-      displayName: '',
       email: '', 
       password: '',
       isLoading: false
@@ -25,7 +24,7 @@ export default class SignUpScreen extends Component {
       Alert.alert('Please enter details to sign up!')
     } else {
       this.setState({
-        isLoading: true,
+        isLoading: false,
       })
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
@@ -34,12 +33,11 @@ export default class SignUpScreen extends Component {
         })
         console.log('User registered successfully!')
         this.setState({
-          isLoading: false,
-          displayName: '',
+          isLoading: true,
           email: '', 
           password: ''
         })
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('LoginScreen');
       })
       .catch(error => this.setState({ errorMessage: error.message }))      
     }
@@ -57,13 +55,7 @@ export default class SignUpScreen extends Component {
         <Text
           style={styles.heading}>
           Reach your academic goals with <Text style={{color: '#8639d4'}}>Study Buddy</Text>
-        </Text>
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Name"
-          value={this.state.displayName}
-          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-        />      
+        </Text> 
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
