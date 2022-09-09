@@ -120,5 +120,6 @@ const styles = StyleSheet.create({
         height: 200,
     marginTop: 50,
     marginBottom: 50,
-  }
+  },
+  
 });
