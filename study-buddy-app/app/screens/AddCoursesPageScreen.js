@@ -1,5 +1,5 @@
 //Relevant imports used and needed
-import { useIsFocused, useNavigation } from "@react-navigation/native";
+import {useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   View,
@@ -11,10 +11,7 @@ import {
 import SelectDropdown from "react-native-select-dropdown";
 import {
   assignmentObj,
-  courseMap,
   db,
-  existingAssignmentObj,
-  refreshExisting,
   storeCourseObject,
 } from "../../App";
 import * as Icon from "react-native-feather";
@@ -34,7 +31,6 @@ const AddCoursesPageScreen = (props) => {
       querySnapshot.forEach(function (doc) {
         if (!storeCourseObject.includes(doc.data().courseCode)) {
           storeCourseObject.push(doc.data().courseCode);
-          //courseMap.set(doc.data().courseCode, []);
         }
       });
     })

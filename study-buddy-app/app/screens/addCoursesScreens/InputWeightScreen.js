@@ -10,7 +10,6 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
-  ScrollView,
 } from "react-native";
 import { assignmentObj } from "../../../App";
 
