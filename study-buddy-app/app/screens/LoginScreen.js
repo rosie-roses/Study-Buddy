@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ActivityIndicator } from 'react-native';
-import { firebase, auth } from "../../App";
+import { auth } from "../../App";
 
 export default class LoginScreen extends Component {
 

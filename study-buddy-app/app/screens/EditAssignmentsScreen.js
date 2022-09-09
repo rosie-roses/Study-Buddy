@@ -15,13 +15,14 @@ import * as Icon from "react-native-feather";
 import { gradesList } from "./addCoursesScreens/SelectGradeScreen";
 
 const EditAssignmentsScreen = () => {
+  //Declared to contain data for the contstants
   const navigation = useNavigation();
-
   const [nameText, onChangeNameText] = React.useState("");
   const [gradeText, onChangeGradeText] = React.useState("");
   const [weightText, onchangeWeightText] = React.useState("");
   const [selection, onChangeSelection] = React.useState("");
 
+  
   const gradeKeys = [];
   gradesList.map((item) => {
     let keys = Object.keys(item);

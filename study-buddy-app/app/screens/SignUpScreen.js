@@ -5,14 +5,13 @@
 
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
-import { firebase, auth } from "../../App";
+import { auth } from "../../App";
 
 export default class SignUpScreen extends Component {
   
   constructor() {
     super();
     this.state = { 
-      displayName: '',
       email: '', 
       password: '',
       isLoading: false
@@ -29,7 +28,7 @@ export default class SignUpScreen extends Component {
       Alert.alert('Please enter details to sign up!')
     } else {
       this.setState({
-        isLoading: true,
+        isLoading: false,
       })
       // use Firebase account creation method 
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
@@ -39,8 +38,7 @@ export default class SignUpScreen extends Component {
         })
         console.log('User registered successfully!')
         this.setState({
-          isLoading: false,
-          displayName: '',
+          isLoading: true,
           email: '', 
           password: ''
         })
@@ -65,15 +63,7 @@ export default class SignUpScreen extends Component {
         <Text
           style={styles.heading}>
           Reach your academic goals with <Text style={{color: '#8639d4'}}>Study Buddy</Text>
-        </Text>
-        {/* Name text input */}
-        <TextInput
-          style={styles.inputStyle}
-          placeholder="Name"
-          value={this.state.displayName}
-          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
-        />      
-        {/* Email text input */}
+        </Text> 
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"

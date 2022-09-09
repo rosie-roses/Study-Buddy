@@ -1,10 +1,8 @@
 import React from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   View,
   Text,
   StyleSheet,
-  Dimensions,
 } from "react-native";
 import CarouselFunctionality from "../components/CarouselFunctionality";
 import { data } from "../assets/data";

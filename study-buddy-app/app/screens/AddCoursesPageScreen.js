@@ -1,5 +1,5 @@
+//Relevant imports used and needed
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-// import React from "react";
 import React, { useState } from "react";
 import {
   View,
@@ -7,13 +7,11 @@ import {
   StyleSheet,
   Pressable,
   TextInput,
-  ScrollView,
 } from "react-native";
 import SelectDropdown from "react-native-select-dropdown";
 import {
   assignmentObj,
   courseMap,
-  courseObj,
   db,
   storeCourseObject,
 } from "../../App";
@@ -55,6 +53,7 @@ const AddCoursesPageScreen = (props) => {
   }
 
   async function assignAssignmentsToCourseCode() {
+    //get all the assignments 
     await db
       .collection("assignments")
       .where("courseCode", "!=", null)
@@ -70,15 +69,12 @@ const AddCoursesPageScreen = (props) => {
           }
         });
       });
-
-    // storeCourseObject.forEach((course) => {
-    //   console.log("Course:  ", course);
-    //   console.log(courseMap.get(course));
-    // })
   }
 
   const [text, onChangeText] = React.useState("");
   return (
+    //Styles addes into the page
+    //Features include text input, pressable buttons and disabled button.
     <View style={styles.container}>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title}>Give Your Assessment a name....</Text>
@@ -90,6 +86,7 @@ const AddCoursesPageScreen = (props) => {
           onChangeText={onChangeText}
           value={text}
           onSubmitEditing={() => {
+            
             // Store user input text to App.
             assignmentObj.assignmentName = text;
           }}
@@ -111,7 +108,6 @@ const AddCoursesPageScreen = (props) => {
         <SelectDropdown
           data={storeCourseObject}
           onSelect={(selectedItem, index) => {
-            // console.log(selectedItem, index);
             onChangeSelection(selectedItem);
           }}
           defaultButtonText={"Add existing course"}
@@ -148,6 +144,7 @@ const AddCoursesPageScreen = (props) => {
   );
 };
 
+//Lists of all the styling features.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
