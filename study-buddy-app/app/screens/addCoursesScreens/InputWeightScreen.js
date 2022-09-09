@@ -49,7 +49,7 @@ const InputWeightScreen = (props) => {
           style={styles.backNextButton}
           onPress={() => {
             assignmentObj.weight = parseInt(text); // Grade will be NaN if user didn't input anything.
-            navigation.navigate("SelectGrade"); // //  take user to grade input screen
+            navigation.navigate("SelectGrade"); //take user to grade input screen
           }}
         >
           <Text style={styles.backNextButtonText}>next</Text>

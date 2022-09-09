@@ -4,20 +4,22 @@ import HomePageScreen from "./HomePageScreen";
 import OverviewPageScreen from "./OverviewPageScreen";
 import AddCoursesPageScreen from "./AddCoursesPageScreen";
 import GradeCalcPageScreen from "./GradeCalcPageScreeen";
-import AccountPageScreen from "./AccountPageScreen";
+
 import MenuBar from "../components/MenuBar";
 
 const DummyPageScreen = (props) => {
     
+  //variable that created the bottom part for tab navigator
   const Tab = createBottomTabNavigator();
 
   return (
+    //Displays the menu bar at the bottom of the page 
+    //Displays the corresponding name of the screen 
       <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <MenuBar {...props} />}>
-          <Tab.Screen name="Home" component={HomePageScreen} />
+          <Tab.Screen name="Home" component={HomePageScreen} /> 
           <Tab.Screen name="Overview" component={OverviewPageScreen} />
           <Tab.Screen name="Add Courses" component={AddCoursesPageScreen} />
           <Tab.Screen name="Calculate Grade" component={GradeCalcPageScreen} />
-          <Tab.Screen name="Account" component={AccountPageScreen} />
       </Tab.Navigator>
   );
 }
