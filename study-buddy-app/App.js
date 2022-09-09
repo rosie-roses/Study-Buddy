@@ -7,8 +7,6 @@ import HomePageScreen from "./app/screens/HomePageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
 import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
 import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
-import AccountPageScreen from "./app/screens/AccountPageScreen";
-import OverviewPageScreen from "./app/screens/GradeCalcPageScreeen";
 import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
 import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
@@ -149,11 +147,6 @@ function App() {
         <Stack.Screen
           name="GradeCalculator"
           component={GradeCalcPageScreen}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen
-          name="Account"
-          component={AccountPageScreen}
           options={{ headerShown: false }}
         />
         {/* Sub screens for Add courses screen here */}

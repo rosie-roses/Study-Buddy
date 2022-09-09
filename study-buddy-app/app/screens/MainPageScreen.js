@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { StyleSheet, Text, View, Button, Image, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 
 const MainPageScreen = (props) => {
 

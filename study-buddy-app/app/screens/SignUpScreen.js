@@ -1,8 +1,6 @@
-import { StatusBar } from "expo-status-bar";
-import { useNavigation } from "@react-navigation/native";
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
-import { firebase, auth } from "../../App";
+import { auth } from "../../App";
 
 export default class SignUpScreen extends Component {
   
