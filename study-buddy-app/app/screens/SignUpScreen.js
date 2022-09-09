@@ -14,11 +14,13 @@ import {
 import { addUserToFirebase, userObj } from "../../App";
 
 const SignUpScreen = (props) => {
-    const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
-     const [username, setusername] = useState('');
+    const [mail, setEmail] = React.useState('');
+     const [Password, setPassword] = React.useState('');
+     const [username, setusername] = React.useState('');
      const navigation = useNavigation();
-     
+     console.log(username);
+     console.log(mail);
+     console.log(Password);
 return (
 <View style={styles.container}>
 <Text style={styles.title}>Welcome To Study Budy</Text>
@@ -28,11 +30,23 @@ return (
     <View style={styles.inputView}>
   <TextInput
     style={styles.TextInput}
+    placeholder="Username."
+    placeholderTextColor="#003f5c"
+    onChangeText={(username) => setusername(username)}
+    
+  />
+  
+  </View >
+  <View style={styles.inputView}> 
+  <TextInput
+    style={styles.TextInput}
     placeholder="Email."
     placeholderTextColor="#003f5c"
+    secureTextEntry={true}
     onChangeText={(email) => setEmail(email)}
+    
   />
-  </View >
+  </View>
   <View style={styles.inputView}> 
   <TextInput
     style={styles.TextInput}
@@ -40,24 +54,17 @@ return (
     placeholderTextColor="#003f5c"
     secureTextEntry={true}
     onChangeText={(password) => setPassword(password)}
-  />
-  </View>
-  <View style={styles.inputView}> 
-  <TextInput
-    style={styles.TextInput}
-    placeholder="username."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(username) => setusername(username)}
+    
+    
   />
   </View>
   <Pressable
           style={styles.loginBtn}
           onPress={() => {
-            userObj.username,
-            userObj.email,
-            userObj.password,
-            addUserToFirebase(username, email,password);
+            userObj.username = username;
+            userObj.email = mail;
+            userObj.password = Password;
+            addUserToFirebase(userObj);
             navigation.navigate("HomePageScreen");
             
           }}
@@ -87,6 +94,7 @@ const styles = StyleSheet.create({
         textAlign: "center",
         marginTop: 40,
         lineHeight: 40,
+        fontFamily: "sans-serif-condensed",
       },
     inputView: {
         backgroundColor: "#8639d4",
@@ -95,6 +103,7 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: "center",
         marginBottom: 20,
+        fontFamily: "sans-serif-condensed",
       },
       
     TextInput: {
@@ -102,6 +111,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
+    fontFamily: "sans-serif-condensed",
       },
 
       loginBtn:{

@@ -18,7 +18,8 @@ import EditAssignmentsScreen from "./app/screens/EditAssignmentsScreen";
 
 /* Set up and configure firebase to the app. (✿˵•́◡•̀˵)━✧.* */
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
-import * as firebase from "firebase";
+import { initializeApp } from "firebase/app";
+import { getFireStore } from "firebase/firestore";
 import "firebase/firestore";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignUpScreen from "./app/screens/SignUpScreen";
@@ -34,12 +35,13 @@ const firebaseConfig = {
   measurementId: "G-PMMEHPR4J9",
 };
 
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-}
+const app = initializeApp(firebaseConfig);
 
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
+
+const allAssignments = [];
+const db = getFireStore;
 
 function addToFirebase(name, courseCode, colorCode, weight, grade) {
   db.collection("assignments")
@@ -73,25 +75,25 @@ function addStudyTipToFirebase(studytipstring) {
     });
 }
 
-function addUserToFirebase(username, email, password) {
-  db.collection("UserInformation")
-    .add({
-      username: username,
-      email: email,
-      password: password
-    })
-    .then((docRef) => {
-      console.log("Added user information object with ID: ", docRef.id);
-      reportID = docRef.id;
-    })
-    .catch((error) => {
-      console.error("Error adding user information to firebase: ", error);
-    });
+async function addUserToFirebase(userObj) {
+  // db.collection("UserInformation")
+  //   .add({
+  //     username: username,
+  //     email: email,
+  //     password: password
+  //   })
+  //   .then((docRef) => {
+  //     console.log("Added user information object with ID: ", docRef.id);
+  //     reportID = docRef.id;
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error adding user information to firebase: ", error);
+  //   });
+  await setDoc(doc(db, "UserInformation", userObj.username ), {
+    email: userObj.email,
+    password: userObj.password,
+  });
 }
-
-
-const allAssignments = [];
-const db = firebase.firestore();
 
 const assignmentObj = {
   assignmentName: null, // String.
