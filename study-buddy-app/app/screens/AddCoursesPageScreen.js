@@ -13,6 +13,8 @@ import {
   assignmentObj,
   courseMap,
   db,
+  existingAssignmentObj,
+  refreshExisting,
   storeCourseObject,
 } from "../../App";
 import * as Icon from "react-native-feather";
@@ -23,53 +25,23 @@ const AddCoursesPageScreen = (props) => {
   const [addExistingDisabled, setaddExistingDisabled] = useState(false);
   const [selection, onChangeSelection] = React.useState("");
 
-  // When user visits screen get alkl course codes.
-  const isVisible = useIsFocused();
   React.useEffect(() => {
-    const focusListener = navigation.addListener("focus", () => {
-      // Screen is focused >> User is currently viewing it.
-      // console.log(injuryReportData.areaOfInjury.length);
-      getExistingCoursecodes();
+    db
+    .collection("assignments")
+    .where("courseCode", "!=", null)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach(function (doc) {
+        if (!storeCourseObject.includes(doc.data().courseCode)) {
+          storeCourseObject.push(doc.data().courseCode);
+          //courseMap.set(doc.data().courseCode, []);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
     });
-    return focusListener;
-  }, [isVisible, navigation]);
-
-  async function getExistingCoursecodes() {
-    // First get all the course codes available and store it.
-    await db
-      .collection("assignments")
-      .where("courseCode", "!=", null)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach(function (doc) {
-          if (!storeCourseObject.includes(doc.data().courseCode)) {
-            storeCourseObject.push(doc.data().courseCode);
-            courseMap.set(doc.data().courseCode, []);
-          }
-        });
-      });
-
-    assignAssignmentsToCourseCode();
-  }
-
-  async function assignAssignmentsToCourseCode() {
-    //get all the assignments 
-    await db
-      .collection("assignments")
-      .where("courseCode", "!=", null)
-      .get()
-      .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          if (courseMap.has(doc.data().courseCode)) {
-            courseMap
-              .get(doc.data().courseCode)
-              .push(doc.data().assignmentName);
-          } else {
-            courseMap.set(doc.data().courseCode, []);
-          }
-        });
-      });
-  }
+  }, []);
 
   const [text, onChangeText] = React.useState("");
   return (

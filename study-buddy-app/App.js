@@ -102,6 +102,14 @@ const assignmentObj = {
   grade: null // String
 };
 
+const existingAssignmentObj = {
+  assignmentName: null, // String.
+  courseCode: null, // String
+  colorCode: null, // String.
+  weight: null, // Number.
+  grade: null // String
+};
+
 const currentlyEditing = {
   docID: null,
   assignmentName: null,
@@ -124,16 +132,26 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
+function refreshExisting() {
+  existingAssignmentObj.assignmentName = null;
+  existingAssignmentObj.courseCode = null;
+  existingAssignmentObj.colorCode = null;
+  existingAssignmentObj.grade = null;
+  existingAssignmentObj.weight = null;
+}
+
 const storeCourseObject = [];
 
 var courseMap = new Map();
+
+const anotherarr = [];
 
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="LoginScreen">
+      <Stack.Navigator initialRouteName="Main">
         <Stack.Screen
           name="Main"
           component={MainPageScreen}
@@ -196,4 +214,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj, auth };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, storeCourseObject, userObj, auth, courseMap, existingAssignmentObj, refreshExisting, anotherarr};
