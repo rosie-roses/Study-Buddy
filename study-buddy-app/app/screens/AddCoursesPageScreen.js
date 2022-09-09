@@ -114,7 +114,7 @@ const AddCoursesPageScreen = (props) => {
             // console.log(selectedItem, index);
             onChangeSelection(selectedItem);
           }}
-          defaultButtonText={"Select Course"}
+          defaultButtonText={"Add existing course"}
           buttonTextAfterSelection={(selectedItem, index) => {
             return selectedItem;
           }}
@@ -231,28 +231,35 @@ const styles = StyleSheet.create({
   },
   dropdownButton: {
     height: 50,
-    backgroundColor: "#2E294E",
+    backgroundColor: "#8639d4", //2E294E
     borderRadius: 5,
     marginTop: 20,
     width: "100%",
+    fontSize: 16,
   },
   dropdownButtonText: {
     color: "#FFF",
     textAlign: "center",
-    fontWeight: "bold"
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    fontSize: 16,
   },
   dropdown: {
-    backgroundColor: "#2E294E",
+    backgroundColor: "#8639d4",
     borderBottomLeftRadius: 12,
     borderBottomRightRadius: 12,
     height: 165,
     marginTop: Platform.OS === "ios" ? 0 : -25,
+    fontSize: 16
   },
-  dropdownRow: { backgroundColor: "#2E294E", borderBottomColor: "#DDDDDD" },
+  dropdownRow: { backgroundColor: "#8639d4", borderBottomColor: "#DDDDDD" },
   dropdownRowText: {
     color: "#FFF",
     textAlign: "center",
     fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 1
   },
 });
 
