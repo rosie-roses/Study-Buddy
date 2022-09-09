@@ -195,7 +195,7 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SignUp"
+          name="SignUpScreen"
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
