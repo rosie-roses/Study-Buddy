@@ -1,122 +1,123 @@
 import { StatusBar } from "expo-status-bar";
-// import React from "react";
-import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import {
-    StyleSheet,
-    Text,
-    View,
-    Image,
-    TextInput,
-    Pressable,
-   
-} from "react-native";
-import { addUserToFirebase, userObj } from "../../App";
+import React, { Component } from "react";
+import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
+import { firebase, auth } from "../../App";
 
-const SignUpScreen = (props) => {
-    const [email, setEmail] = useState('');
-     const [password, setPassword] = useState('');
-     const [username, setusername] = useState('');
-     const navigation = useNavigation();
-     
-return (
-<View style={styles.container}>
-<Image style={styles.image} source={require("../assets/official_logo.png")} />
-
-    <StatusBar style="auto" />
-    <View style={styles.inputView}>
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Email."
-    placeholderTextColor="#003f5c"
-    onChangeText={(email) => setEmail(email)}
-  />
-  </View >
-  <View style={styles.inputView}> 
-  <TextInput
-    style={styles.TextInput}
-    placeholder="Password."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(password) => setPassword(password)}
-  />
-  </View>
-  <View style={styles.inputView}> 
-  <TextInput
-    style={styles.TextInput}
-    placeholder="username."
-    placeholderTextColor="#003f5c"
-    secureTextEntry={true}
-    onChangeText={(username) => setusername(username)}
-  />
-  </View>
-  <Pressable
-          style={styles.loginBtn}
-          onPress={() => {
-            userObj.username,
-            userObj.email,
-            userObj.password,
-            addUserToFirebase(username, email,password);
-            navigation.navigate("HomePageScreen");
-            
-          }}
-        >
-          <Text style={styles.loginText}>REGISTER</Text>
-        </Pressable>
-
-</View>
-
-);
+export default class SignUpScreen extends Component {
+  
+  constructor() {
+    super();
+    this.state = { 
+      displayName: '',
+      email: '', 
+      password: '',
+      isLoading: false
+    }
+  }
+  updateInputVal = (val, prop) => {
+    const state = this.state;
+    state[prop] = val;
+    this.setState(state);
+  }
+  registerUser = () => {
+    if(this.state.email === '' && this.state.password === '') {
+      Alert.alert('Enter details to signup!')
+    } else {
+      this.setState({
+        isLoading: true,
+      })
+      auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then((res) => {
+        res.user.updateProfile({
+          displayName: this.state.displayName
+        })
+        console.log('User registered successfully!')
+        this.setState({
+          isLoading: false,
+          displayName: '',
+          email: '', 
+          password: ''
+        })
+        this.props.navigation.navigate('Login')
+      })
+      .catch(error => this.setState({ errorMessage: error.message }))      
+    }
+  }
+  render() {
+    if(this.state.isLoading){
+      return(
+        <View style={styles.preloader}>
+          <ActivityIndicator size="large" color="#9E9E9E"/>
+        </View>
+      )
+    }    
+    return (
+      <View style={styles.container}>  
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Name"
+          value={this.state.displayName}
+          onChangeText={(val) => this.updateInputVal(val, 'displayName')}
+        />      
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Email"
+          value={this.state.email}
+          onChangeText={(val) => this.updateInputVal(val, 'email')}
+        />
+        <TextInput
+          style={styles.inputStyle}
+          placeholder="Password"
+          value={this.state.password}
+          onChangeText={(val) => this.updateInputVal(val, 'password')}
+          maxLength={15}
+          secureTextEntry={true}
+        />   
+        <Button
+          color="#3740FE"
+          title="Signup"
+          onPress={() => this.registerUser()}
+        />
+        <Text 
+          style={styles.loginText}
+          onPress={() => this.props.navigation.navigate('Login')}>
+          Already Registered? Click here to login
+        </Text>                          
+      </View>
+    );
+  }
 }
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        backgroundColor: "white",
-        padding: 40,
-        justifyContent: "flex-start",
-      },
-    inputView: {
-        backgroundColor: "#FFC0CB",
-        borderRadius: 30,
-        width: "70%",
-        height: 40,
-        alignItems: "center",
-        marginBottom: 50,
-      },
-      
-      TextInput: {
-        height: 50,
+  container: {
     flex: 1,
-    padding: 10,
-    marginLeft: 20,
-      },
-
-      loginBtn:{
-   width:"80%",
-   borderRadius:25,
-   height:50,
-   alignItems:"center",
-   justifyContent:"center",
-    marginTop:40,
-   backgroundColor:"#FF1493",
- },
- signupbtn:{
-    width:"80%",
-    borderRadius:25,
-    height:50,
-    alignItems:"center",
-    justifyContent:"center",
-     marginTop:40,
-    backgroundColor:"#FF1493",
- },
- image: {
-    marginBottom: 40,
-    height:150,
-    width:150,
-    marginTop: 100,
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "center",
+    padding: 35,
+    backgroundColor: '#fff'
   },
+  inputStyle: {
+    width: '100%',
+    marginBottom: 15,
+    paddingBottom: 15,
+    alignSelf: "center",
+    borderColor: "#ccc",
+    borderBottomWidth: 1
+  },
+  loginText: {
+    color: '#3740FE',
+    marginTop: 25,
+    textAlign: 'center'
+  },
+  preloader: {
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff'
+  }
 });
-
-    export default SignUpScreen;

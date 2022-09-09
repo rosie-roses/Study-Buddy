@@ -23,6 +23,7 @@ import "firebase/firestore";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignUpScreen from "./app/screens/SignUpScreen";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDViGClOz4lL3qXicfhlcxjuYqpcw5w8mo",
   authDomain: "study-buddy-d3266.firebaseapp.com",
@@ -37,6 +38,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+const auth = firebase.auth();
 
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
@@ -185,10 +188,15 @@ function App() {
           component={LoginScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj, auth };
