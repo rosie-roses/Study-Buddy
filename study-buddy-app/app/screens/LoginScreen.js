@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, Alert, Image, ActivityIndicator } from 'react-native';
 import { firebase, auth } from "../../App";
 
 export default class LoginScreen extends Component {
@@ -47,7 +47,12 @@ export default class LoginScreen extends Component {
       )
     }
     return (
+      
       <View style={styles.container}>
+        <Image
+        style={styles.image}
+        source={require("../assets/official_logo.png")}
+      />
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
@@ -63,15 +68,16 @@ export default class LoginScreen extends Component {
           secureTextEntry={true}
         />
         <Button
-          color="#3740FE"
+          color="#8639d4"
           title="Sign In"
           onPress={() => this.userLogin()}
         />
         <Text
           style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('SignUp')}>
-          Don't have an account? Click here to sign-up!
+          onPress={() => this.props.navigation.navigate('SignUpScreen')}>
+          Don't have an account? <Text style={{color: '#3740FE'}}>Create a Study Buddy account.</Text>
         </Text>
+        
       </View>
     );
   }
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   loginText: {
-    color: '#3740FE',
+    color: 'black',
     marginTop: 25,
     textAlign: 'center'
   },
@@ -107,5 +113,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#fff'
+  },
+  image: {
+    alignSelf: 'center',
+    width: 225,
+        height: 200,
+    marginTop: 50,
+    marginBottom: 50,
   }
 });

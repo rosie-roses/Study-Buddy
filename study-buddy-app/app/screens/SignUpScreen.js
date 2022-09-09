@@ -22,7 +22,7 @@ export default class SignUpScreen extends Component {
   }
   registerUser = () => {
     if(this.state.email === '' && this.state.password === '') {
-      Alert.alert('Enter details to signup!')
+      Alert.alert('Please enter details to sign up!')
     } else {
       this.setState({
         isLoading: true,
@@ -54,6 +54,10 @@ export default class SignUpScreen extends Component {
     }    
     return (
       <View style={styles.container}>  
+        <Text
+          style={styles.heading}>
+          Reach your academic goals with <Text style={{color: '#8639d4'}}>Study Buddy</Text>
+        </Text>
         <TextInput
           style={styles.inputStyle}
           placeholder="Name"
@@ -75,15 +79,15 @@ export default class SignUpScreen extends Component {
           secureTextEntry={true}
         />   
         <Button
-          color="#3740FE"
-          title="Signup"
+          color="#8639d4"
+          title="Sign Up"
           onPress={() => this.registerUser()}
         />
-        <Text 
+        <Text
           style={styles.loginText}
-          onPress={() => this.props.navigation.navigate('Login')}>
-          Already Registered? Click here to login
-        </Text>                          
+          onPress={() => this.props.navigation.navigate('LoginScreen')}>
+          Already have an account?<Text style={{color: '#3740FE'}}> Sign in</Text>
+        </Text>                         
       </View>
     );
   }
@@ -97,6 +101,12 @@ const styles = StyleSheet.create({
     padding: 35,
     backgroundColor: '#fff'
   },
+  heading: {
+    fontSize: 30,
+    marginBottom: 40,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
   inputStyle: {
     width: '100%',
     marginBottom: 15,
@@ -106,7 +116,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   loginText: {
-    color: '#3740FE',
+    color: 'black',
     marginTop: 25,
     textAlign: 'center'
   },
