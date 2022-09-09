@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 // import React from "react";
 import React, { useState } from "react";
 import {
@@ -9,15 +9,77 @@ import {
   TextInput,
   ScrollView,
 } from "react-native";
-import { assignmentObj } from "../../App";
+import SelectDropdown from "react-native-select-dropdown";
+import {
+  assignmentObj,
+  courseMap,
+  courseObj,
+  db,
+  storeCourseObject,
+} from "../../App";
+import * as Icon from "react-native-feather";
 
 const AddCoursesPageScreen = (props) => {
   const navigation = useNavigation();
-  // console.log("colorCodeHex selected: ", assignmentObj.colorCodeHex);
+  const [addNewDisabled, setaddNewDisabled] = useState(false);
+  const [addExistingDisabled, setaddExistingDisabled] = useState(false);
+  const [selection, onChangeSelection] = React.useState("");
+
+  // When user visits screen get alkl course codes.
+  const isVisible = useIsFocused();
+  React.useEffect(() => {
+    const focusListener = navigation.addListener("focus", () => {
+      // Screen is focused >> User is currently viewing it.
+      // console.log(injuryReportData.areaOfInjury.length);
+      getExistingCoursecodes();
+    });
+    return focusListener;
+  }, [isVisible, navigation]);
+
+  async function getExistingCoursecodes() {
+    // First get all the course codes available and store it.
+    await db
+      .collection("assignments")
+      .where("courseCode", "!=", null)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          if (!storeCourseObject.includes(doc.data().courseCode)) {
+            storeCourseObject.push(doc.data().courseCode);
+            courseMap.set(doc.data().courseCode, []);
+          }
+        });
+      });
+
+    assignAssignmentsToCourseCode();
+  }
+
+  async function assignAssignmentsToCourseCode() {
+    await db
+      .collection("assignments")
+      .where("courseCode", "!=", null)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (courseMap.has(doc.data().courseCode)) {
+            courseMap
+              .get(doc.data().courseCode)
+              .push(doc.data().assignmentName);
+          } else {
+            courseMap.set(doc.data().courseCode, []);
+          }
+        });
+      });
+
+    // storeCourseObject.forEach((course) => {
+    //   console.log("Course:  ", course);
+    //   console.log(courseMap.get(course));
+    // })
+  }
+
   const [text, onChangeText] = React.useState("");
   return (
     <View style={styles.container}>
-      <ScrollView>
         <Text style={styles.title}>1/4</Text>
         <Text style={styles.title}>Give Your Assessment a name....</Text>
 
@@ -32,23 +94,47 @@ const AddCoursesPageScreen = (props) => {
             assignmentObj.assignmentName = text;
           }}
         />
-
+        <View style={styles.buttonGroup}>
         <Pressable
-          style={styles.buttonContainer1}
+          style={[
+            styles.buttonContainer1,
+            { backgroundColor: addNewDisabled ? "#444" : "#8639d4" },
+          ]}
+          disabled={addNewDisabled}
           onPress={() => {
+            setaddExistingDisabled(true);
             navigation.navigate("ChooseColourCode");
           }}
         >
           <Text style={styles.buttonText1}>Add New Course</Text>
         </Pressable>
-        <Pressable
-          style={styles.buttonContainer2}
-          onPress={() => {
-            navigation.navigate("InputWeightScreen");
+        <SelectDropdown
+          data={storeCourseObject}
+          onSelect={(selectedItem, index) => {
+            // console.log(selectedItem, index);
+            onChangeSelection(selectedItem);
           }}
-        >
-          <Text style={styles.buttonText1}>Add Existing Course</Text>
-        </Pressable>
+          defaultButtonText={"Add existing course"}
+          buttonTextAfterSelection={(selectedItem, index) => {
+            return selectedItem;
+          }}
+          rowTextForSelection={(item, index) => {
+            return item;
+          }}
+          buttonStyle={styles.dropdownButton}
+          buttonTextStyle={styles.dropdownButtonText}
+          renderDropdownIcon={(isOpened) => {
+            if (isOpened) {
+              return <Icon.ChevronUp color={"#fff"} />;
+            } else {
+              return <Icon.ChevronDown color={"#fff"} />;
+            }
+          }}
+          dropdownIconPosition={"right"}
+          dropdownStyle={styles.dropdown}
+          rowStyle={styles.dropdownRow}
+          rowTextStyle={styles.dropdownRowText}
+        />
         <Pressable
           style={styles.nextButton}
           onPress={() => {
@@ -57,7 +143,7 @@ const AddCoursesPageScreen = (props) => {
         >
           <Text style={styles.nextButtonText}>next</Text>
         </Pressable>
-      </ScrollView>
+        </View>
     </View>
   );
 };
@@ -66,22 +152,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    justifyContent: "flex-start",
     backgroundColor: "white",
     padding: 40,
-    justifyContent: "flex-start",
+  },
+  buttonGroup: {
+    flexDirection: "column",
+    width: "100%"
   },
   buttonContainer1: {
     padding: 10,
     borderRadius: 5,
     elevation: 3,
-    backgroundColor: "#8639d4",
     marginTop: 50,
   },
   buttonContainer2: {
     padding: 10,
     borderRadius: 5,
     elevation: 3,
-    backgroundColor: "#8639d4",
     marginTop: 20,
   },
   buttonText1: {
@@ -93,7 +181,6 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
     textAlign: "center",
   },
-
   nextButton: {
     alignItems: "center",
     justifyContent: "center",
@@ -140,6 +227,39 @@ const styles = StyleSheet.create({
     fontFamily: "notoserif",
     letterSpacing: 1,
     fontSize: 16,
+    width: "100%"
+  },
+  dropdownButton: {
+    height: 50,
+    backgroundColor: "#8639d4", //2E294E
+    borderRadius: 5,
+    marginTop: 20,
+    width: "100%",
+    fontSize: 16,
+  },
+  dropdownButtonText: {
+    color: "#FFF",
+    textAlign: "center",
+    fontWeight: "bold",
+    textTransform: "uppercase",
+    letterSpacing: 1,
+    fontSize: 16,
+  },
+  dropdown: {
+    backgroundColor: "#8639d4",
+    borderBottomLeftRadius: 12,
+    borderBottomRightRadius: 12,
+    height: 165,
+    marginTop: Platform.OS === "ios" ? 0 : -25,
+    fontSize: 16
+  },
+  dropdownRow: { backgroundColor: "#8639d4", borderBottomColor: "#DDDDDD" },
+  dropdownRowText: {
+    color: "#FFF",
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 16,
+    letterSpacing: 1
   },
 });
 

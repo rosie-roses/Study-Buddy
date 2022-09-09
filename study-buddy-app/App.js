@@ -24,6 +24,7 @@ import "firebase/firestore";
 import LoginScreen from "./app/screens/LoginScreen";
 import SignUpScreen from "./app/screens/SignUpScreen";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyDViGClOz4lL3qXicfhlcxjuYqpcw5w8mo",
   authDomain: "study-buddy-d3266.firebaseapp.com",
@@ -35,7 +36,9 @@ const firebaseConfig = {
   measurementId: "G-PMMEHPR4J9",
 };
 
-const app = initializeApp(firebaseConfig);
+// const app = initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
 
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
@@ -125,6 +128,10 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
+const storeCourseObject = [];
+
+var courseMap = new Map();
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
@@ -188,7 +195,7 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="SignUpScreen"
+          name="SignUp"
           component={SignUpScreen}
           options={{ headerShown: false }}
         />
@@ -198,4 +205,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj, auth };
