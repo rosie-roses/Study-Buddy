@@ -1,3 +1,7 @@
+/*
+* The modal when a user clicks on an assessment on the assessment overview page.
+* The modal has two options: edit or delete the assessment.
+*/
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
@@ -20,11 +24,12 @@ const MainModal = ({
   const [openDelete, setOpenDelete] = React.useState(false);
   return (
     <View>
+      {/* transition and animation for how the modal appears on/leaves the screen */}
       <Modal
         style={styles.modal}
         animationIn={"slideInUp"}
         animationOut={"slideInDown"}
-        animationInTiming={750} // or any other
+        animationInTiming={750} 
         animationOutTiming={1000}
         isVisible={open}
         onBackButtonPress={onClose}
@@ -33,6 +38,7 @@ const MainModal = ({
         hideModalContentWhileAnimating={true}
         statusBarTranslucent
       >
+        {/* Modal box + label */}
         <View style={styles.modalBox}>
           <Text style={styles.text}>Selected Assignment:</Text>
           <View style={styles.selectedCourse}>
@@ -41,11 +47,12 @@ const MainModal = ({
             ></View>
             <Text style={styles.assignmentName}>{assignmentName}</Text>
           </View>
+          {/*Edit button - when pressed, the user is taken to the editing page*/}
           <View style={styles.buttonGroup}>
             <Pressable
               onPress={() => {
                 onClose();
-                refreshCurrentlyEditing();
+                refreshCurrentlyEditing(); // sets assignment fields to null
                 currentlyEditing.docID = docID;
                 currentlyEditing.assignmentName = assignmentName;
                 currentlyEditing.colorCode = assignmentColorCode;
@@ -54,6 +61,7 @@ const MainModal = ({
                 navigation.navigate("EditAssignments");
               }}
             >
+              {/* Pencil icon for Edit button */}
               <View style={styles.button}>
                 <MaterialCommunityIcons
                   name="pencil-outline"
@@ -67,6 +75,7 @@ const MainModal = ({
             <Pressable onPress={() => {
               setOpenDelete(true);
             }}>
+              {/* Trash icon for Delete button */}
               <View style={styles.button}>
                 <MaterialCommunityIcons
                   name="trash-can-outline"
@@ -81,6 +90,7 @@ const MainModal = ({
         </View>
       </Modal>
         {openDelete && (
+          // Modal when user chooses to delete an assessment
           <DeleteModal
             openDelete={openDelete}
             onCloseDelete={() => setOpenDelete(false)}
