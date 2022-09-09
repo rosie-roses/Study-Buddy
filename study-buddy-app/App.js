@@ -20,6 +20,9 @@ import EditAssignmentsScreen from "./app/screens/EditAssignmentsScreen";
 // Received help from >> https://www.freecodecamp.org/news/react-native-firebase-tutorial/.
 import * as firebase from "firebase";
 import "firebase/firestore";
+import LoginScreen from "./app/screens/LoginScreen";
+import SignUpScreen from "./app/screens/SignUpScreen";
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyDViGClOz4lL3qXicfhlcxjuYqpcw5w8mo",
@@ -35,6 +38,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+
+const auth = firebase.auth();
 
 /* Test to see if we can add to firebase. Received help from >> https://firebase.google.com/docs/firestore. */
 var reportID = "";
@@ -71,8 +76,24 @@ function addStudyTipToFirebase(studytipstring) {
     });
 }
 
-const allAssignments = [];
+function addUserToFirebase(username, email, password) {
+  db.collection("UserInformation")
+    .add({
+      username: username,
+      email: email,
+      password: password
+    })
+    .then((docRef) => {
+      console.log("Added user information object with ID: ", docRef.id);
+      reportID = docRef.id;
+    })
+    .catch((error) => {
+      console.error("Error adding user information to firebase: ", error);
+    });
+}
 
+
+const allAssignments = [];
 const db = firebase.firestore();
 
 const assignmentObj = {
@@ -89,6 +110,12 @@ const currentlyEditing = {
   colorCode: null,
   grade: null,
   weight: NaN
+}
+
+const userObj = {
+  username: null,
+  email: null,
+  password: null
 }
 
 function refreshCurrentlyEditing() {
@@ -108,7 +135,7 @@ const Stack = createNativeStackNavigator(); // Navigation.
 function App() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="Main">
+      <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen
           name="Main"
           component={MainPageScreen}
@@ -160,10 +187,20 @@ function App() {
           component={EditAssignmentsScreen}
           options={{ headerShown: false, animation: "slide_from_bottom"}}
         />
+        <Stack.Screen
+          name="LoginScreen"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, storeCourseObject, courseMap };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, addUserToFirebase, userObj, auth };
