@@ -73,7 +73,7 @@ const EditAssignmentsScreen = () => {
           keyboardType="default"
           placeholder={
             currentlyEditing.assignmentName === null
-              ? "Example name"
+              ? "e.g. Engineering Essay"
               : currentlyEditing.assignmentName
           }
           placeholderTextColor="#4f4f4f"
@@ -88,7 +88,7 @@ const EditAssignmentsScreen = () => {
           keyboardType="numeric"
           placeholder={
             currentlyEditing.weight === null
-              ? "75%"
+              ? "e.g. 75%"
               : currentlyEditing.weight + "%"
           }
           placeholderTextColor="#4f4f4f"
@@ -134,8 +134,8 @@ const EditAssignmentsScreen = () => {
           keyboardType="numeric"
           placeholder={
             currentlyEditing.grade === null
-              ? "e.g. 30"
-              : currentlyEditing.grade + "%"
+              ? "e.g. 30%"
+              : currentlyEditing.grade
           }
           placeholderTextColor="#4f4f4f"
         />

@@ -69,11 +69,11 @@ const SelectGradeScreen = (props) => {
     <View style={styles.container}>
       <Text style={styles.title}>3/4</Text>
       <Text style={styles.title}>
-        What grade did you get for this assignment?
+        What grade did you get for this assessment?
       </Text>
       <Text style={styles.text}>
-        Please either manually enter the percentage for the grade recieived or
-        select the grade received from the dropdown menu.
+        Please either type a percentage grade OR
+        select a letter grade from the dropdown menu.
       </Text>
       <SafeAreaView>
         {/* Text input if user wants to enter a percentage score for their assessment grade */}
@@ -82,8 +82,8 @@ const SelectGradeScreen = (props) => {
           onChangeText={onChangeText}
           value={text}
           keyboardType="numeric"
-          placeholder="75%"
-          placeholderTextColor="#4f4f4f"
+          placeholder="e.g. 95"
+          placeholderTextColor="#c9c9c9"
         />
       </SafeAreaView>
       {/* Drop-down menu for letter grades */}
@@ -124,7 +124,7 @@ const SelectGradeScreen = (props) => {
           <Text style={styles.backNextButtonText}>back</Text>
         </Pressable>
         <Pressable
-        /* 'Next' button which takes the user to successful assessment creation screen */
+          /* 'Next' button which takes the user to successful assessment creation screen */
           style={styles.backNextButton}
           onPress={() => {
             setGrade(parseFloat(text), selection);
@@ -144,14 +144,14 @@ const SelectGradeScreen = (props) => {
         </Pressable>
       </View>
       {/* user has option to skip entering a grade for their assessment.  */}
-      <Pressable
-        style={styles.skipButton}
+      <Pressable style={styles.skipButton}
         onPress={() => {
           assignmentObj.grade = null; // grade field is null for assessment object.
-          navigation.navigate("AssessmentCreatedScreen");
-        }}
-      >
-        <Text style={styles.skipButtonText}>Skip this step</Text>
+          navigation.navigate("AssessmentCreatedScreen")
+        }}>
+        <Text
+          style={styles.skipButtonText}
+        >Skip this step</Text>
       </Pressable>
     </View>
   );
@@ -263,4 +263,4 @@ const styles = StyleSheet.create({
 });
 
 export default SelectGradeScreen;
-export {gradesList };
+export { gradesList };

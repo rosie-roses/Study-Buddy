@@ -6,7 +6,6 @@ import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
-
 const AssessmentCreatedScreen = (props) => {
     const navigation = useNavigation();
   return (
@@ -19,13 +18,12 @@ const AssessmentCreatedScreen = (props) => {
             navigation.navigate("Home");
           }}
         >
-         
-          <Icon name="close-outline" color={"#666666"} size={50} />  {/* Close/exit icon */}
+          <Icon name="close-outline" color={"#666666"} size={50} /> 
         </Pressable>
       </View>
       <View style={styles.content}>
         <Text style={styles.title}>Assessment Created!</Text>
-        <Icon name="checkmark-circle-outline" color={"green"} size={200} />  {/* Success/checkmark icon */}
+        <Icon name="checkmark-circle-outline" color={"green"} size={200} /> 
         <Text style={styles.title2}>
           Please refer to the courses overview tab in the main menu to view the
           assignment you created.
