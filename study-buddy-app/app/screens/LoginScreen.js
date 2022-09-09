@@ -22,7 +22,8 @@ export default class LoginScreen extends Component {
     this.setState(state);
   }
   userLogin = () => {
-    if (this.state.email === '' && this.state.password === '') { // if the user does not enter anything and tries to sign in, alert pops up
+    // if the user does not enter anything and tries to sign in, alert pops up
+    if (this.state.email === '' && this.state.password === '') { 
       Alert.alert('Please enter details to sign in!')
     } else {
       this.setState({
@@ -60,12 +61,14 @@ export default class LoginScreen extends Component {
         style={styles.image}
         source={require("../assets/official_logo.png")}
       />
+      {/* Email input text field */}
         <TextInput
           style={styles.inputStyle}
           placeholder="Email"
           value={this.state.email}
           onChangeText={(val) => this.updateInputVal(val, 'email')}
         />
+        {/* Password input text field */}
         <TextInput
           style={styles.inputStyle}
           placeholder="Password"
@@ -74,11 +77,13 @@ export default class LoginScreen extends Component {
           maxLength={15}
           secureTextEntry={true}
         />
+        {/* Button to sign in, when pressed user log-in occurs */}
         <Button
           color="#8639d4"
           title="Sign In"
           onPress={() => this.userLogin()}
         />
+        {/* Link to signup screen if the user has not registered an account */}
         <Text
           style={styles.loginText}
           onPress={() => this.props.navigation.navigate('SignUpScreen')}>

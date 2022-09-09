@@ -1,3 +1,7 @@
+/*
+* Displaying and styling the items in the carousel
+*/
+
 import React from 'react'
 import { View, StyleSheet, Text, Image, Dimensions } from 'react-native'
 
