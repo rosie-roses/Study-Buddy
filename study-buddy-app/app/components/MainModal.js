@@ -11,20 +11,20 @@ import { currentlyEditing, refreshCurrentlyEditing } from "../../App";
 import DeleteModal from "./DeleteModal";
 
 const MainModal = ({
-  open,
-  onClose,
-  colorCode,
-  docID,
-  assignmentName,
-  assignmentColorCode,
-  assignmentGrade,
-  assignmentWeight,
+  open, // If true opens the modal
+  onClose, // If true closes the modal
+  colorCode, // colorCode of the assignment selected
+  docID, // Unique ID of the assignment selected (from firebase)
+  assignmentName, // Name of the assignment selected
+  assignmentColorCode, // Color code of the assignment selected
+  assignmentGrade, // Grade of the assignment selected
+  assignmentWeight, // wWight of the assignment selected
 }) => {
   const navigation = useNavigation();
   const [openDelete, setOpenDelete] = React.useState(false);
   return (
     <View>
-      {/* transition and animation for how the modal appears on/leaves the screen */}
+      {/* Modal is rendered on the screen but only is visible once the open variable is set to true. */}
       <Modal
         style={styles.modal}
         animationIn={"slideInUp"}

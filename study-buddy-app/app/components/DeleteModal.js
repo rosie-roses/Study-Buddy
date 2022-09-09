@@ -20,8 +20,8 @@ const DeleteModal = ({ openDelete, onCloseDelete, colorCode, assignmentName, doc
     }
 
   return (
+    //Modal is rendered on the screen but only is visible once the open variable is set to true.
     <View>
-       {/* transition and animation for how the modal appears on/leaves the screen */}
       <Modal
         style={styles.modal}
         animationIn={"slideInUp"}

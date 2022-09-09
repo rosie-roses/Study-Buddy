@@ -3,7 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import MainModal from "./MainModal";
 
 /**
- * Displays each assignment stored in the database as a Assignment component
+ * Displays each assessments stored in the database as an assessment component
  * which is rendered as a pressable.
  */
 
