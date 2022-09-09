@@ -1,3 +1,8 @@
+/**
+ * Sign up screen available through the Sign in screen.
+ * User must sign up with a registered email and password to have an account to access the app.
+ */
+
 import React, { Component } from "react";
 import { StyleSheet, Text, View, TextInput, Button, Alert, ActivityIndicator } from 'react-native';
 import { auth } from "../../App";
@@ -18,12 +23,14 @@ export default class SignUpScreen extends Component {
     this.setState(state);
   }
   registerUser = () => {
+    // if the user does not enter anything and tries to sign up, alert pops up
     if(this.state.email === '' && this.state.password === '') {
       Alert.alert('Please enter details to sign up!')
     } else {
       this.setState({
         isLoading: false,
       })
+      // use Firebase account creation method 
       auth.createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then((res) => {
         res.user.updateProfile({
@@ -35,12 +42,14 @@ export default class SignUpScreen extends Component {
           email: '', 
           password: ''
         })
-        this.props.navigation.navigate('LoginScreen');
+        // after successfully signing up, take user back to the login screen
+        this.props.navigation.navigate('Login')
       })
       .catch(error => this.setState({ errorMessage: error.message }))      
     }
   }
   render() {
+    // Loading animation
     if(this.state.isLoading){
       return(
         <View style={styles.preloader}>
@@ -50,6 +59,7 @@ export default class SignUpScreen extends Component {
     }    
     return (
       <View style={styles.container}>  
+        {/* text heading on sign up screen */}
         <Text
           style={styles.heading}>
           Reach your academic goals with <Text style={{color: '#8639d4'}}>Study Buddy</Text>
@@ -60,6 +70,7 @@ export default class SignUpScreen extends Component {
           value={this.state.email}
           onChangeText={(val) => this.updateInputVal(val, 'email')}
         />
+        {/* Password text input */}
         <TextInput
           style={styles.inputStyle}
           placeholder="Password"
@@ -68,11 +79,14 @@ export default class SignUpScreen extends Component {
           maxLength={15}
           secureTextEntry={true}
         />   
+        {/* When signup button is pressed, user is registered through Firebase method*/}
         <Button
           color="#8639d4"
           title="Sign Up"
           onPress={() => this.registerUser()}
         />
+         {/* Displayed text for user to click on if they have an account already, which directs
+         them to the login screen.*/}
         <Text
           style={styles.loginText}
           onPress={() => this.props.navigation.navigate('LoginScreen')}>

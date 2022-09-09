@@ -1,3 +1,7 @@
+/**
+ * When adding a new assessment, users have the option to input the weight of the assessment
+ */
+
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import {
@@ -13,13 +17,13 @@ import { assignmentObj } from "../../../App";
 const InputWeightScreen = (props) => {
   const navigation = useNavigation();
   const [text, onChangeText] = React.useState("");
-  // console.log("selected course name: ", assignmentObj.assignmentName);
   return (
     <View style={styles.container}>
       <Text style={styles.title}>2/4</Text>
       <Text style={styles.title}>
-        How much is this Assessment worth your overall grade? (In %)
+        How much is this assessment worth your overall grade? (In %)
       </Text>
+      {/* Text input field for user to enter the weight of the assessment */}
       <TextInput
         style={styles.input}
         placeholder="15%"
@@ -30,20 +34,22 @@ const InputWeightScreen = (props) => {
         
       />
       <View style={styles.buttonContainer}>
+        {/* If user presses 'Back' button, they are taken to the previous step for adding a new assessment */}
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
+            //  take user to Add Courses screen
             navigation.navigate("Add Courses");
           }}
         >
           <Text style={styles.backNextButtonText}>back</Text>
         </Pressable>
-
+        {/* When user presses 'Next' button, they are taken to the next step for adding a new assessment */}
         <Pressable
           style={styles.backNextButton}
           onPress={() => {
-            assignmentObj.weight = parseInt(text); // Will be NaN if user didn't input anything.
-            navigation.navigate("SelectGrade");
+            assignmentObj.weight = parseInt(text); // Grade will be NaN if user didn't input anything.
+            navigation.navigate("SelectGrade"); //take user to grade input screen
           }}
         >
           <Text style={styles.backNextButtonText}>next</Text>

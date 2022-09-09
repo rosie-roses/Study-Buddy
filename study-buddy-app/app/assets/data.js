@@ -1,3 +1,8 @@
+/**
+ * This file contains an array of the study tips and facts that are displayed on
+ * the Study tips screen.
+ */
+
 export const data = [
   {id: 1, name: 'A change in scenery can improve both your memory and concentration levels. Try checking out a new coffee spot each week or heading to your local library. '},
   {id: 2, name: 'Use practice tests or questions to quiz yourself, without looking at your notes.'},
