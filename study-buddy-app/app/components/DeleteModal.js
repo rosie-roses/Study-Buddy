@@ -1,3 +1,8 @@
+/*
+* The modal for when a user goes to delete an assessment. 
+* The modal has one option depicted by a trash icon button.
+*/
+
 import React from "react";
 import Modal from "react-native-modal";
 import { View, Text, StyleSheet, Pressable } from "react-native";
@@ -5,7 +10,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import { db } from "../../App";
 
 const DeleteModal = ({ openDelete, onCloseDelete, colorCode, assignmentName, docID }) => {
-
+    // pass through the id of the selected assessment then delete from database
     const deletAssignment = (id) => {
         db.collection("assignments").doc(id).delete().then(() => {
             console.log("Document successfully deleted!");
@@ -15,6 +20,7 @@ const DeleteModal = ({ openDelete, onCloseDelete, colorCode, assignmentName, doc
     }
 
   return (
+    //Modal is rendered on the screen but only is visible once the open variable is set to true.
     <View>
       <Modal
         style={styles.modal}
@@ -29,18 +35,23 @@ const DeleteModal = ({ openDelete, onCloseDelete, colorCode, assignmentName, doc
         hideModalContentWhileAnimating={true}
         statusBarTranslucent
       >
+        {/* Modal box + label */}
         <View style={styles.modalBox}>
           <Text style={styles.text}>Delete Assignment:</Text>
           <View style={styles.selectedCourse}>
+            {/* Label to display assignment details */}
             <View
-              style={[styles.circle, { backgroundColor: colorCode }]}
+              style={[styles.circle, { backgroundColor: colorCode }]} // circle the colour of the assessment's colorCode
             ></View>
-            <Text style={styles.assignmentName}>{assignmentName}</Text>
+            {/* name of assessment */}
+            <Text style={styles.assignmentName}>{assignmentName}</Text> 
           </View>
+          {/* when delete button is pressed, call the deleteAssignment function */}
           <View style={styles.buttonGroup}>
             <Pressable onPress={() => {
                 deletAssignment(docID);
             }}>
+               {/* Trash icon for Delete button */}
               <View style={styles.button}>
                 <MaterialCommunityIcons
                   name="trash-can-outline"
