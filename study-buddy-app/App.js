@@ -99,6 +99,10 @@ function refreshCurrentlyEditing() {
   currentlyEditing.weight = NaN
 }
 
+const storeCourseObject = [];
+
+var courseMap = new Map();
+
 const Stack = createNativeStackNavigator(); // Navigation.
 
 function App() {
@@ -162,4 +166,4 @@ function App() {
 }
 
 export default App;
-export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing };
+export { db, addToFirebase, assignmentObj, allAssignments, addStudyTipToFirebase, currentlyEditing, refreshCurrentlyEditing, storeCourseObject, courseMap };
