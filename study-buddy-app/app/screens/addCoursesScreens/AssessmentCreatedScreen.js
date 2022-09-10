@@ -15,7 +15,7 @@ const AssessmentCreatedScreen = (props) => {
           style={styles.backNextButton}
           // User can be directed to home screen by pressing button  after the assessment is created.
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("StudyTipsPageScreen");
           }}
         >
           <Icon name="close-outline" color={"#666666"} size={50} /> 
@@ -25,8 +25,8 @@ const AssessmentCreatedScreen = (props) => {
         <Text style={styles.title}>Assessment Created!</Text>
         <Icon name="checkmark-circle-outline" color={"green"} size={200} /> 
         <Text style={styles.title2}>
-          Please refer to the courses overview tab in the main menu to view the
-          assignment you created.
+          Please refer to the Overview tab in the menu bar to view the
+          assessment you created.
         </Text>
       </View>
     </View>

@@ -43,7 +43,7 @@ export default class SignUpScreen extends Component {
           password: ''
         })
         // after successfully signing up, take user back to the login screen
-        this.props.navigation.navigate('Login')
+        this.props.navigation.navigate('LoginScreen')
       })
       .catch(error => this.setState({ errorMessage: error.message }))      
     }
