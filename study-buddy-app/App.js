@@ -3,7 +3,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DummyPageScreen from "./app/screens/DummyPageScreen";
-import HomePageScreen from "./app/screens/HomePageScreen";
+import StudyTipsPageScreen from "./app/screens/StudyTipsPageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
 import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
 import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
@@ -189,8 +189,8 @@ function App() {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="HomePageScreen"
-          component={HomePageScreen}
+          name="StudyTipsPageScreen"
+          component={StudyTipsPageScreen}
           options={{ headerShown: false }}
         />
         <Stack.Screen

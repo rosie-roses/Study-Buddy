@@ -7,7 +7,7 @@ import {
 import CarouselFunctionality from "../components/CarouselFunctionality";
 import { data } from "../assets/data";
 
-const HomePageScreen = ({ props }) => {
+const StudyTipsPageScreen = ({ props }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Study Tips</Text>  
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
     
 });
 
-export default HomePageScreen;
+export default StudyTipsPageScreen;

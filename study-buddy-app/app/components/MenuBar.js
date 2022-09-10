@@ -51,7 +51,7 @@ const MenuBar = ({ state, descriptors, navigation, size }) => {
             key={index}
             style={{ flex: 1 }}
           >
-            {route.name === "Home" ? <Icon.Home color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
+            {route.name === "Study Tips" ?  <MaterialCommunityIcons name="head-lightbulb-outline" color={isFocused ? "#673ab7" : "#222"} size={28} style={[styles.labelStyle, styles.gradeCalc]} />  : null}
             {route.name === "Overview" ? <Icon.BookOpen color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
             {route.name === "Add Assessment" ? <Icon.PlusSquare color={isFocused ? "#673ab7" : "#222"} size={size} style={styles.labelStyle} /> : null}
             {route.name === "Calculate Grade" ? <MaterialCommunityIcons name="calculator" color={isFocused ? "#673ab7" : "#222"} size={28} style={[styles.labelStyle, styles.gradeCalc]} />  : null}
