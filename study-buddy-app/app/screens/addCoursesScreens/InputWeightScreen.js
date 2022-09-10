@@ -38,7 +38,7 @@ const InputWeightScreen = (props) => {
           style={styles.backNextButton}
           onPress={() => {
             //  take user to Add Courses screen
-            navigation.navigate("Add Courses");
+            navigation.navigate("Add Assessment");
           }}
         >
           <Text style={styles.backNextButtonText}>back</Text>

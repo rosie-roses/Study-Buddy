@@ -18,7 +18,7 @@ const DummyPageScreen = (props) => {
       <Tab.Navigator screenOptions={{ headerShown: false }} tabBar={(props) => <MenuBar {...props} />}>
           <Tab.Screen name="Home" component={HomePageScreen} /> 
           <Tab.Screen name="Overview" component={OverviewPageScreen} />
-          <Tab.Screen name="Add Courses" component={AddCoursesPageScreen} />
+          <Tab.Screen name="Add Assessment" component={AddCoursesPageScreen} />
           <Tab.Screen name="Calculate Grade" component={GradeCalcPageScreen} />
       </Tab.Navigator>
   );

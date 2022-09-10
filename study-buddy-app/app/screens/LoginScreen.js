@@ -31,7 +31,6 @@ export default class LoginScreen extends Component {
       })
       // use Firebase authentication sign-in method 
       auth.signInWithEmailAndPassword(this.state.email, this.state.password).then((res) => {
-        console.log(res)
         console.log('User logged-in successfully!')
         // successful login - trigger loading animation before showing welcome pop screen
         this.setState({
@@ -46,7 +45,6 @@ export default class LoginScreen extends Component {
   }
   render() {
     // Loading animation
-    console.log(this.state.isLoading);
     if (this.state.isLoading) {
       return (
         <View style={styles.preloader}>

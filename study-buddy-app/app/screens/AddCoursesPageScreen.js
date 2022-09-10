@@ -1,5 +1,5 @@
 //Relevant imports used and needed
-import {useNavigation } from "@react-navigation/native";
+import {useIsFocused, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import {
   View,
@@ -11,33 +11,47 @@ import {
 import SelectDropdown from "react-native-select-dropdown";
 import {
   assignmentObj,
+  courseMap,
   db,
   storeCourseObject,
 } from "../../App";
 import * as Icon from "react-native-feather";
 
 const AddCoursesPageScreen = (props) => {
+  console.log(assignmentObj);
   const navigation = useNavigation();
   const [addNewDisabled, setaddNewDisabled] = useState(false);
   const [addExistingDisabled, setaddExistingDisabled] = useState(false);
   const [selection, onChangeSelection] = React.useState("");
-
+  const isVisible = useIsFocused();
   React.useEffect(() => {
-    db
-    .collection("assignments")
-    .where("courseCode", "!=", null)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach(function (doc) {
-        if (!storeCourseObject.includes(doc.data().courseCode)) {
-          storeCourseObject.push(doc.data().courseCode);
-        }
-      });
-    })
-    .catch((error) => {
-      console.error("Error: ", error);
+    const focusListener = navigation.addListener("focus", () => {
+      // Screen is focused >> User is currently viewing it.
+      // console.log(injuryReportData.areaOfInjury.length);
+      getExistingCoursecodes();
     });
-  }, []);
+    return focusListener;
+  }, [isVisible, navigation]);
+
+  async function getExistingCoursecodes() {
+    // First get all the course codes available and store it.
+    await db
+      .collection("assignments")
+      .where("courseCode", "!=", null)
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          if (!storeCourseObject.includes(doc.data().courseCode)) {
+            storeCourseObject.push(doc.data().courseCode);
+            courseMap.set(doc.data().courseCode, []);
+          }
+        });
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  }
+
 
   const [text, onChangeText] = React.useState("");
   return (
@@ -103,7 +117,9 @@ const AddCoursesPageScreen = (props) => {
         <Pressable
           style={styles.nextButton}
           onPress={() => {
-            assignmentObj.courseCode = selection;
+            if (selection !== "") {
+              assignmentObj.courseCode = selection;
+            }
             navigation.navigate("InputWeightScreen");
           }}
         >

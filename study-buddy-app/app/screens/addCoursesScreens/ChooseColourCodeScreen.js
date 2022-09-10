@@ -32,8 +32,8 @@ const ChooseColourCodeScreen = (props) => {
             Alert.alert("Error: Course code already exists!");
           });
         } else {
-          // otherwise, the user is taken back to the Add Courses page 
-          navigation.navigate("Add Courses");
+          // otherwise, the user is taken back to the Add Assessment page 
+          navigation.navigate("Add Assessment");
         }
       });
   };
@@ -44,28 +44,28 @@ const ChooseColourCodeScreen = (props) => {
         {/* If the user no longer wants to add a course or choose a colour, they can exit by pressing a close/exit button */}
         <Pressable
           onPress={() => {
-            navigation.navigate("Add Courses");
+            navigation.navigate("Add Assessment");
           }}
         >
           <Icon name="close-outline" color={"#666666"} size={50} />
         </Pressable>
       </View>
       {/* Text input for user to enter the course name */}
-      <Text style={styles.title}>Choose a new course name and colour: </Text>
-      <Text style={styles.text}>Select course name: </Text>
+      <Text style={styles.title}>Add course and colour details: </Text>
+      <Text style={styles.text}>Enter course name: </Text>
       <SafeAreaView>
         <TextInput
           style={styles.input}
           onChangeText={onChangeText}
           value={text}
           keyboardType="default"
-          placeholder="ENGR201"
-          placeholderTextColor="#4f4f4f"
+          placeholder="e.g. ENGR201"
+          placeholderTextColor="#c9c9c9"
           maxLength={7}
         />
       </SafeAreaView>
       {/* Color picker for assessment/course */}
-      <Text style={styles.text}>Select course colour code: </Text>
+      <Text style={styles.text}>Select colour: </Text>
       <PickerComponent />
       {/* User has to confirm entered details by pressing 'done' button */}
       <Pressable
