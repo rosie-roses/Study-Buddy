@@ -18,7 +18,6 @@ import {
 import * as Icon from "react-native-feather";
 
 const AddCoursesPageScreen = (props) => {
-  console.log(assignmentObj);
   const navigation = useNavigation();
   const [addNewDisabled, setaddNewDisabled] = useState(false);
   const [addExistingDisabled, setaddExistingDisabled] = useState(false);

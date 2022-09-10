@@ -37,8 +37,6 @@ const GradeCalc = (props) => {
     setJsonObjs(anotherarr);
   }, []);
 
-  console.log(jsonObjs)
-
   async function getcourses() {
      await db
       .collection("assignments")
@@ -72,33 +70,6 @@ const GradeCalc = (props) => {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.title}>Calculate Grade</Text>
         <Text style={styles.subTitle}>Select a course</Text>
-        {/* <SelectDropdown
-        data={storeCourseObject}
-        onSelect={(selectedItem, index) => {
-          // console.log(selectedItem, index);
-          onChangeSelection(selectedItem);
-        }}
-        defaultButtonText={"Select grade"}
-        buttonTextAfterSelection={(selectedItem, index) => {
-          return selectedItem;
-        }}
-        rowTextForSelection={(item, index) => {
-          return item;
-        }}
-        buttonStyle={styles.dropdownButton}
-        buttonTextStyle={styles.dropdownButtonText}
-        renderDropdownIcon={(isOpened) => {
-          if (isOpened) {
-            return <Icon.ChevronUp color={"#fff"} />;
-          } else {
-            return <Icon.ChevronDown color={"#fff"} />;
-          }
-        }}
-        dropdownIconPosition={"right"}
-        dropdownStyle={styles.dropdown}
-        rowStyle={styles.dropdownRow}
-        rowTextStyle={styles.dropdownRowText}
-      /> */}
       </ScrollView>
     </SafeAreaView>
   );
