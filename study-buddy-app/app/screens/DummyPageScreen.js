@@ -3,7 +3,7 @@ import React from "react";
 import StudyTipsPageScreen from "./StudyTipsPageScreen";
 import OverviewPageScreen from "./OverviewPageScreen";
 import AddCoursesPageScreen from "./AddCoursesPageScreen";
-import GradeCalcPageScreen from "./GradeCalcPageScreeen";
+import GradeCalcPageScreen from "./GradeCalcPageScreen";
 
 import MenuBar from "../components/MenuBar";
 

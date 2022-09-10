@@ -6,7 +6,7 @@ import DummyPageScreen from "./app/screens/DummyPageScreen";
 import StudyTipsPageScreen from "./app/screens/StudyTipsPageScreen";
 import MainPageScreen from "./app/screens/MainPageScreen";
 import AddCoursesPageScreen from "./app/screens/AddCoursesPageScreen";
-import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreeen";
+import GradeCalcPageScreen from "./app/screens/GradeCalcPageScreen";
 import ChooseColourCodePageScreen from "./app/screens/addCoursesScreens/ChooseColourCodeScreen";
 import InputWeightScreen from "./app/screens/addCoursesScreens/InputWeightScreen";
 import AssessmentCreatedScreen from "./app/screens/addCoursesScreens/AssessmentCreatedScreen";
