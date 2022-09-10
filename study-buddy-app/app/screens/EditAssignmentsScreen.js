@@ -87,9 +87,9 @@ const EditAssignmentsScreen = () => {
           value={weightText}
           keyboardType="numeric"
           placeholder={
-            currentlyEditing.weight === null
+            currentlyEditing.weight.toString() === null
               ? "e.g. 75%"
-              : currentlyEditing.weight + "%"
+              : currentlyEditing.weight.toString() + "%"
           }
           placeholderTextColor="#4f4f4f"
         />
@@ -133,9 +133,9 @@ const EditAssignmentsScreen = () => {
           value={gradeText}
           keyboardType="numeric"
           placeholder={
-            currentlyEditing.grade === null
+            currentlyEditing.grade.toString() === null
               ? "e.g. 30%"
-              : currentlyEditing.grade
+              : currentlyEditing.grade.toString()
           }
           placeholderTextColor="#4f4f4f"
         />

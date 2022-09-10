@@ -115,7 +115,7 @@ const currentlyEditing = {
   assignmentName: null,
   colorCode: null,
   grade: null,
-  weight: NaN
+  weight: null
 }
 
 const userObj = {
@@ -129,7 +129,7 @@ function refreshCurrentlyEditing() {
   currentlyEditing.assignmentName = null;
   currentlyEditing.colorCode = null;
   currentlyEditing.grade = null,
-  currentlyEditing.weight = NaN
+  currentlyEditing.weight = null
 }
 
 function refreshExisting() {
@@ -151,7 +151,7 @@ const Stack = createNativeStackNavigator(); // Navigation.
 function App() {
   return (
     <NavigationContainer independent={true}>
-      <Stack.Navigator initialRouteName="SignUpScreen">
+      <Stack.Navigator initialRouteName="LoginScreen">
         <Stack.Screen
           name="Main"
           component={MainPageScreen}

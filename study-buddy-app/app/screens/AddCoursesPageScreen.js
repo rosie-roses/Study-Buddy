@@ -103,6 +103,7 @@ const AddCoursesPageScreen = (props) => {
         <Pressable
           style={styles.nextButton}
           onPress={() => {
+            assignmentObj.courseCode = selection;
             navigation.navigate("InputWeightScreen");
           }}
         >
